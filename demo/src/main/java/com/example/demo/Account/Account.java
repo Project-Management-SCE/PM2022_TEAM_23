@@ -1,23 +1,27 @@
 package com.example.demo.Account;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document
 public class Account {
-    private Long ID;
+    @Id
+    private String ID;
     private String UserName;
     private String Email;
     private String Password;
 
-    public Account(Long id, String userName, String email, String password) {
-        ID = id;
+    public Account(String userName, String email, String password) {
         UserName = userName;
         Email = email;
         Password = password;
     }
 
-    public Long getID() {
+    public String getID() {
         return ID;
     }
 
-    public void setID(Long ID) {
+    public void setID(String ID) {
         this.ID = ID;
     }
 
