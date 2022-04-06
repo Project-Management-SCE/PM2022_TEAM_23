@@ -2,5 +2,6 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Frontend/go-for-fit/react-bootstrap-with-material-design" vcs="Git" />
   </component>
 </project>
