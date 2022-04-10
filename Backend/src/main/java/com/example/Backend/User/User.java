@@ -16,7 +16,7 @@ public abstract class User {
     private String type;
     private String firstName;
     private String lastName;
-    private Calendar dateOfBirth;
+    private Calendar dateOfBirth = Calendar.getInstance();
     private Float height;
     private Float weight;
     private String phoneNumber;

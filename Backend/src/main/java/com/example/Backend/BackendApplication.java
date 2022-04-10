@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+
 @Configuration
 @SpringBootApplication
 public class BackendApplication {
@@ -17,24 +18,24 @@ public class BackendApplication {
 		SpringApplication.run(BackendApplication.class, args);
 	}
 
-//	@Bean
-//	@Autowired
-//	CommandLineRunner runner(AdminRepository repository){
-//		return args -> {
-//			Admin admin = new Admin(
-//					"tomerbe3",
-//					"tomerbe3@gmail.com",
-//					"12324",
-//					"Tomer",
-//					"Ben Shimol",
-//					1996,
-//					9,
-//					19,
-//					1.8F,
-//					80F,
-//					"0524858601"
-//			);
-//			repository.save(admin);
-//		};
-//	}
+	@Bean
+	@Autowired
+	CommandLineRunner runner(AdminRepository repository){
+		return args -> {
+			Admin admin = new Admin(
+					"tomerbe3",
+					"tomerbe3@gmail.com",
+					"12324",
+					"Tomer",
+					"Ben Shimol",
+					1996,
+					9,
+					19,
+					1.8F,
+					80F,
+					"0524858601"
+			);
+			repository.save(admin);
+		};
+	}
 }
