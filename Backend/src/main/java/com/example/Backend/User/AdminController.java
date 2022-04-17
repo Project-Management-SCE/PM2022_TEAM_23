@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("users/admin")
+@RequestMapping("admin/")
 public class AdminController {
     @Autowired
     private AdminRepository adminRepository;
