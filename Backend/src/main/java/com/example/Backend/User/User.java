@@ -16,18 +16,22 @@ public abstract class User {
     private String type;
     private String firstName;
     private String lastName;
-    private Calendar dateOfBirth = Calendar.getInstance();
+    private Integer yearOfBirth;
+    private Integer monthOfBirth;
+    private Integer dayOfBirth;
     private Float height;
     private Float weight;
     private String phoneNumber;
 
-    public User(String userName, String email, String password, String firstName, String lastName, Integer year, Integer month, Integer day, Float height, Float weight, String phoneNumber) {
+    public User(String userName, String email, String password, String firstName, String lastName, Integer yearOfBirth, Integer monthOfBirth, Integer dayOfBirth, Float height, Float weight, String phoneNumber) {
         this.userName = userName;
         this.email = email;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.dateOfBirth.set(year,month,day);
+        this.yearOfBirth = yearOfBirth;
+        this.monthOfBirth = monthOfBirth;
+        this.dayOfBirth = dayOfBirth;
         this.height = height;
         this.weight = weight;
         this.phoneNumber = phoneNumber;
@@ -81,13 +85,20 @@ public abstract class User {
         this.lastName = lastName;
     }
 
-    public Date getDateOfBirth() {
-        return dateOfBirth.getTime();
+    public Integer getYearOfBirth() {
+        return yearOfBirth;
     }
 
-    public void setDateOfBirth(int year, int month, int day) {
-        this.dateOfBirth.set(year,month,day);
+
+    public Integer getMonthOfBirth() {
+        return monthOfBirth;
     }
+
+
+    public Integer getDayOfBirth() {
+        return dayOfBirth;
+    }
+
 
     public Float getHeight() {
         return height;
@@ -129,5 +140,24 @@ public abstract class User {
         type = "Sportsman";
     }
 
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "ID='" + ID + '\'' +
+                ", userName='" + userName + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", type='" + type + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", yearOfBirth=" + yearOfBirth +
+                ", monthOfBirth=" + monthOfBirth +
+                ", dayOfBirth=" + dayOfBirth +
+                ", height=" + height +
+                ", weight=" + weight +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                '}';
+    }
 }
 

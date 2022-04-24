@@ -13,8 +13,8 @@ public class SportsmanController {
     @Autowired
     private SportsmanRepository sportsmanRepository;
 
-    @GetMapping("/")
-    public List<Sportsman> getASportmans() {return sportsmanRepository.findAll();}
+    @GetMapping("/getSportsman")
+    public List<Sportsman> getSportsman() {return sportsmanRepository.findAll();}
 
     @GetMapping("/{id}")
     public Optional<Sportsman> getSportsmanByID(@PathVariable String id){

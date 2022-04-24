@@ -8,12 +8,13 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("admin/")
+@CrossOrigin
 public class AdminController {
     @Autowired
     private AdminRepository adminRepository;
 
-    @GetMapping("/")
-    public List<Admin> getAdmins(){
+    @GetMapping("/getAdmin")
+    public List<Admin> getAdmin(){
         return adminRepository.findAll();
     }
 
