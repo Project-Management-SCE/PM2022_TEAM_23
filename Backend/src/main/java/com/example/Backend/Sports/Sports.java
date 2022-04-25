@@ -28,6 +28,18 @@ public class Sports {
         return coach;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setCoach(String coach) {
+        this.coach = coach;
+    }
+
     @Override
     public String toString() {
         return "Sports{" +
