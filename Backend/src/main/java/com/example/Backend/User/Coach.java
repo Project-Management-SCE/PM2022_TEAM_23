@@ -13,16 +13,16 @@ public class Coach extends User{
                  String password,
                  String firstName,
                  String lastName,
-                 Integer year,
-                 Integer month,
-                 Integer day,
+                 Integer yearOfBirth,
+                 Integer monthOfBirth,
+                 Integer dayOfBirth,
                  Float height,
                  Float weight,
                  String phoneNumber,
                  String licenseNumber,
                  String workPlaceId,
                  String sportKind) {
-        super(userName, email, password, firstName, lastName, year, month, day, height, weight, phoneNumber);
+        super(userName, email, password, firstName, lastName, yearOfBirth, monthOfBirth, dayOfBirth, height, weight, phoneNumber);
         super.setCoach();
         this.licenseNumber = licenseNumber;
         this.workPlaceId = workPlaceId;

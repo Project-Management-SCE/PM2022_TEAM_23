@@ -15,13 +15,21 @@ public class CoachController {
     @Autowired
     private CoachRepository coachRepository;
 
-    @GetMapping("/{id}")
-    public Optional<Coach> getCoachByID(@PathVariable String id){
-        return coachRepository.findById(id);
-    }
-
     @GetMapping("/getCoach")
     public List<Coach> getCoach() {return coachRepository.findAll();}
+
+    @GetMapping(value="/auth/{userName}/{password}")
+    public Optional<Coach> CoachAuth(@PathVariable String userName,@PathVariable String password){
+        Optional<Coach> coach = coachRepository.findById(userName);
+        if (coach.isPresent())
+        {
+            if (coach.get().getPassword() == password)
+            {
+                return coach;
+            }
+        }
+        return coach;
+    }
 
     @PostMapping("/sign_up")
     public Coach saveCoach(@RequestBody Coach coach)
@@ -32,10 +40,10 @@ public class CoachController {
             return null;
     }
 
-    @DeleteMapping("/{id}")
-    public String deleteCoach(@PathVariable String id){
-        coachRepository.deleteById(id);
-        return "Coach " + id + "deleted";
+    @DeleteMapping("/{userName}")
+    public String deleteCoach(@PathVariable String userName){
+        coachRepository.deleteById(userName);
+        return "Coach " + userName + "deleted";
     }
 }
 
