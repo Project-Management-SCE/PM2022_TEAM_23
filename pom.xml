@@ -49,26 +49,17 @@
     				<version>2.8.1</version>
 			</plugin>
 			
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-enforcer-plugin</artifactId>
-				<version>3.0.0-M3</version>
-				<executions>
-				  <execution>
-				    <id>enforce-maven</id>
-				    <goals>
-				      <goal>enforce</goal>
-				    </goals>
-				    <configuration>
-				      <rules>
-					<requireMavenVersion>
-					  <version>[3.5.4,)</version>
-					</requireMavenVersion>
-				      </rules>
-				    </configuration>
-				  </execution>
-				</executions>
-			</plugin>
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-test</artifactId>
+				<scope>test</scope>
+				<exclusions>
+				   <exclusion>
+				      <groupId>org.junit.vintage</groupId>
+				      <artifactId>junit-vintage-engine</artifactId>
+				   </exclusion>
+				</exclusions>
+		     </dependency>
 			
 		</plugins>
 	</build>
