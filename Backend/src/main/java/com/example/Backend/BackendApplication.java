@@ -37,6 +37,23 @@ public class BackendApplication {
 //					"0524858601"
 //			);
 //
+//			Coach coach = new Coach(
+//					"tomerbe13",
+//					"tomerbe3@gmail.com",
+//					"tomer123",
+//					"Tomer",
+//					"Ben Shimol",
+//					1996,
+//					9,
+//					19,
+//					1.80F,
+//					82F,
+//					"0524858601",
+//					"10-102075",
+//					"138K1108532",
+//					"CrossFit"
+//			);
+//
 //			Sportsman sportsman = new Sportsman(
 //					"david12",
 //					"david12@gmail.com",
@@ -66,6 +83,7 @@ public class BackendApplication {
 //			repository.save(sports);
 //			repository.save(sports2);
 //			adminRepository.save(admin1);
+//			coachRepository.save(coach);
 //			sportsmanRepository.save(sportsman);
 //		};
 //	}
