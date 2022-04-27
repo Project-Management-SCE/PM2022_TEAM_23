@@ -111,7 +111,7 @@ public class UserTest {
         assertFalse(coach.getPhoneNumber()=="0501116677");
 
     }
-    //@org.testng.annotations.Test
+   //@org.testng.annotations.Test
     public void testGetters () {
 
         //ADMIN
