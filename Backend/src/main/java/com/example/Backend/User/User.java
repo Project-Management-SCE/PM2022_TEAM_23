@@ -8,8 +8,6 @@ import java.util.Date;
 @Document
 public abstract class User {
     @Id
-    private String ID;
-    @Indexed(unique = true)
     private String userName;
     private String email;
     private String password;
@@ -39,14 +37,6 @@ public abstract class User {
 
     public String getType() {
         return type;
-    }
-
-    public String getID() {
-        return ID;
-    }
-
-    public void setID(String ID) {
-        this.ID = ID;
     }
 
     public String getUserName() {
@@ -144,8 +134,7 @@ public abstract class User {
     @Override
     public String toString() {
         return "User{" +
-                "ID='" + ID + '\'' +
-                ", userName='" + userName + '\'' +
+                "  userName='" + userName + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", type='" + type + '\'' +
