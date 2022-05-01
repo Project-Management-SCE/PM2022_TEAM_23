@@ -54,7 +54,7 @@ public class Coach extends User{
 
     public boolean check_workPlaceId_API()
     {
-        String url = "https://data.gov.il/api/3/action/datastore_search?resource_id=f8dbd3ed-2c62-4d0e-bbaa-b6a15a0e5f7d";
+        String url = "https://data.gov.il/api/3/action/datastore_search?resource_id=2304b5de-c720-4b5c-bbc7-4cbab85e0ae8";
         RestTemplate restTemplate = new RestTemplate();
         String Facilities = restTemplate.getForObject(url,String.class);
         if(Facilities.contains(this.getWorkPlaceId()))
