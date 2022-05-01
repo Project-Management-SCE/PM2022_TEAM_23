@@ -133,20 +133,13 @@ public abstract class User {
 
     @Override
     public String toString() {
-        return "User{" +
-                "  userName='" + userName + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", type='" + type + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", yearOfBirth=" + yearOfBirth +
-                ", monthOfBirth=" + monthOfBirth +
-                ", dayOfBirth=" + dayOfBirth +
-                ", height=" + height +
-                ", weight=" + weight +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                '}';
+        return  "Name: " + firstName + " " + lastName + "\n" +
+                "User Name: " + userName + "\n" +
+                "Email: " + email + "\n" +
+                "Born In: " + dayOfBirth + "/" + monthOfBirth + "/" + yearOfBirth + "\n" +
+                "Height: " + height + "\n" +
+                "Weight: " + weight + "\n" +
+                "Phone Number: " + phoneNumber + "\n";
     }
 }
 
