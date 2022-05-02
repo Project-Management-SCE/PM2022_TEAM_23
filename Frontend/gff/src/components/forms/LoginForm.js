@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import './Form.css';
 import axios from "axios";
+import UserContext from "../../UserContext";
+import { Navigate } from "react-router-dom";
+import Home from "../pages/Home";
 
 class LoginForm extends React.Component {
 
@@ -16,52 +19,66 @@ class LoginForm extends React.Component {
         }
     }
 
-    checkFields = (userName,password) => (userName&&password)? this.setState({errMsg:''}):this.setState({errMsg:"Username and password are required! Please fill them in"});
-    checkUser = (User) => User? this.setState({errMsg:''}):this.setState({errMsg: "User does not exsits! please try again"});
+    checkFields = (userName,password) => (userName&&password)? this.setState({errMsg:''}):this.setState({
+        errMsg:"Username and password are required! Please fill them in",
+        userName:'',
+        password:''
+    });
+    checkUser(User){
+        if(User) {
+            this.setState({errMsg:''});
+            return true;
+        }
+        else {
+            this.setState({errMsg: "User does not exsits! please try again"});
+            return false;
+        }
+    }
 
-    submit(event,userName,password,userType) {
+    async submit(event,userName,password,userType) {
+        const {user, isAuthenticated, LogIn, LogOut} = this.context;
         event.preventDefault();
         this.checkFields(userName,password);
         if(!(userName==='')){
                 if(userType==="Admin")
                 {
-                    axios.get(`http://localhost:8080/admin/auth/${userName}/${password}`)
+                    await axios.get(`http://localhost:8080/admin/auth/${userName}/${password}`)
                     .then((res) => {
                         this.setState({
                             User: res.data
                         })
-                        this.checkUser(this.state.User);
-                        console.log(this.state.User);
+                        {this.checkUser(this.state.User) && LogIn(this.state.User)};
                     });
                 }
                 else if(userType==="Coach")
                 {
-                    axios.get(`http://localhost:8080/coach/auth/${userName}/${password}`)
+                    await axios.get(`http://localhost:8080/coach/auth/${userName}/${password}`)
                     .then((res) => {
                         this.setState({
                             User: res.data
                         })
-                        this.checkUser(this.state.User);
-                        console.log(this.state.User);
+                        {this.checkUser(this.state.User) && LogIn(this.state.User)};
                     });
                 }
                 else if(userType==="Sportsman")
                 {
-                    axios.get(`http://localhost:8080/sportsman/auth/${userName}/${password}`)
+                    await axios.get(`http://localhost:8080/sportsman/auth/${userName}/${password}`)
                     .then((res) => {
                         this.setState({
                             User: res.data
                         })
-                        this.checkUser(this.state.User);
-                        console.log(this.state.User);
+                        {this.checkUser(this.state.User) && LogIn(this.state.User)};
                     });
                 }
         }
+        return isAuthenticated;
     }
 
     render(){
+        const {user, isAuthenticated, LogIn, LogOut} = this.context;
         return (
             <div className='form-content'>
+                {isAuthenticated && (<Navigate to="/" replace={true} />)}
             <form className="form" onSubmit={(e)=>this.submit(e,this.state.userName,this.state.password,this.state.userType)}>
                 <div className="logImg" />
                 <p aria-live="assertive">{this.state.errMsg}</p>
@@ -123,5 +140,7 @@ class LoginForm extends React.Component {
         );
     }
 }
+
+LoginForm.contextType = UserContext
 
 export default LoginForm;

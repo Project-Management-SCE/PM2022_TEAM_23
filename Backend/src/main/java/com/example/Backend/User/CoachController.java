@@ -34,7 +34,7 @@ public class CoachController {
     @PostMapping("/sign_up")
     public Coach saveCoach(@RequestBody Coach coach)
     {
-        if(coach.check_licenseNumber_API() && coach.check_workPlaceId_API())
+        if(coach.check_licenseNumber_API()) //&& coach.check_workPlaceId_API())
             return coachRepository.save(coach);
         else
             return null;
