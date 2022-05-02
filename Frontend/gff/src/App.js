@@ -10,7 +10,10 @@ import LoginForm from './components/forms/LoginForm';
 import {UserProvider} from './UserContext';
 import OurCoaches from './components/pages/OurCoaches';
 import MySportsmans from './components/pages/MySportsmans';
+<<<<<<< HEAD
 import SportsmanProfile from './components/pages/SportsmanProfile';
+=======
+>>>>>>> b0bfd69f6bc627ec39e8b5f47ec3174c0f145cbd
 
 function App() {
   return (
@@ -25,7 +28,10 @@ function App() {
             <Route path="/coach/sign_up" element={<CoachForm />} />
             <Route path='/publicCoaches' element={<OurCoaches />} />
             <Route path='/MySportsmans' element={<MySportsmans />} />
+<<<<<<< HEAD
             <Route path='/sportsman/MyProfile' element={<SportsmanProfile />} />
+=======
+>>>>>>> b0bfd69f6bc627ec39e8b5f47ec3174c0f145cbd
         </Routes>
       </Router>
       </UserProvider>
