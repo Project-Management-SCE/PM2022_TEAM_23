@@ -64,21 +64,12 @@ function Navbar() {
                 About Us
               </Link>
             </li>}
-<<<<<<< HEAD
             {isAuthenticated && user['type']==="Sportsman" &&  <li className='nav-item'>
               <Link
                 to='/sportsman/MyProfile'
-=======
-            
-            <li className='nav-item'>
-              {isAuthenticated?
-              <Link
-                to='/'
->>>>>>> b0bfd69f6bc627ec39e8b5f47ec3174c0f145cbd
                 className='nav-links'
-                onClick={closeMobileMenu && LogOut}
+                onClick={closeMobileMenu}
               >
-<<<<<<< HEAD
                 My Profile
               </Link>
             </li>}
@@ -89,8 +80,6 @@ function Navbar() {
                 className='nav-links'
                 onClick={closeMobileMenu && LogOut}
               >
-=======
->>>>>>> b0bfd69f6bc627ec39e8b5f47ec3174c0f145cbd
                 Logout
               </Link>:
               <Link

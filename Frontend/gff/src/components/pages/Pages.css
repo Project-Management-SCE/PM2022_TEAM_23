@@ -106,7 +106,6 @@
   background-color: black;
   color: rgb(52, 129, 211);
   font-size: 3rem;
-<<<<<<< HEAD
   border-radius: 5px;
 }
 
@@ -114,13 +113,4 @@
   color: white;
   background-color: black;
   border-radius: 5px;
-=======
-}
-
-.sportsmans-container div{
-  color: white;
-  background-color: black;
-  border-radius: 200px;
-  font-size: 2rem;
->>>>>>> b0bfd69f6bc627ec39e8b5f47ec3174c0f145cbd
 }
