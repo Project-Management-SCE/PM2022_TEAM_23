@@ -64,7 +64,15 @@ function Navbar() {
                 About Us
               </Link>
             </li>}
-            
+            {isAuthenticated && user['type']==="Sportsman" &&  <li className='nav-item'>
+              <Link
+                to='/sportsman/MyProfile'
+                className='nav-links'
+                onClick={closeMobileMenu}
+              >
+                My Profile
+              </Link>
+            </li>}
             <li className='nav-item'>
               {isAuthenticated?
               <Link

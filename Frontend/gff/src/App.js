@@ -10,6 +10,7 @@ import LoginForm from './components/forms/LoginForm';
 import {UserProvider} from './UserContext';
 import OurCoaches from './components/pages/OurCoaches';
 import MySportsmans from './components/pages/MySportsmans';
+import SportsmanProfile from './components/pages/SportsmanProfile';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             <Route path="/coach/sign_up" element={<CoachForm />} />
             <Route path='/publicCoaches' element={<OurCoaches />} />
             <Route path='/MySportsmans' element={<MySportsmans />} />
+            <Route path='/sportsman/MyProfile' element={<SportsmanProfile />} />
         </Routes>
       </Router>
       </UserProvider>
