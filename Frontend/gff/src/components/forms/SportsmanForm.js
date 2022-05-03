@@ -13,7 +13,7 @@ class SportsmanForm extends React.Component {
             userName: '',
             email: '',
             password: '',
-            // password2: '',
+            password2: '',
             firstName: '',
             lastName: '',
             year: 0,
@@ -27,7 +27,7 @@ class SportsmanForm extends React.Component {
         }
     }
 
-    getSports = async() => {
+    async getSports() {
         await axios.get("http://localhost:8080/sports/getSports")
         .then(res => {
             this.setState({
@@ -36,52 +36,45 @@ class SportsmanForm extends React.Component {
         })
     }
 
-    componentDidMount()
-    {
+    componentDidMount(){
         this.getSports();
-        axios.get("http://localhost:8080/sportsman/sign_up")
-        .then((res)=>{
-            this.setState({
-                Sportsman: res.data,
-                userName: '',
-                email: '',
-                password: '',
-                firstName: '',
-                lastName: '',
-                year: 0,
-                month: 0,
-                day: 0,
-                height: 0,
-                weight: 0,
-                phoneNumber: '',
-                level: '',
-                sportName: ''
-            })
-        })
     }
 
-
-    submit(event,userName){
+    async submit(event,userName){
         event.preventDefault();
-        // if(!(userName==='') && this.state.password === this.state.password2){
         if(!(userName==='')) {
-            axios.post("http://localhost:8080/sportsman/sign_up",{
+            await axios.post("http://localhost:8080/sportsman/sign_up",{
                 userName:this.state.userName,
                 email:this.state.email,
                 password:this.state.password,
                 firstName:this.state.firstName,
                 lastName:this.state.lastName,
-                year:this.state.year,
-                month:this.state.month,
-                day:this.state.day,
+                yearOfBirth:this.state.year,
+                monthOfBirth:this.state.month,
+                dayOfBirth:this.state.day,
                 height:this.state.height,
                 weight:this.state.weight,
                 phoneNumber:this.state.phoneNumber,
                 level:this.state.level,
                 sportName:this.state.sportName
-            }).then(()=>{
-                this.componentDidMount();
-            });
+            }).then(
+                this.setState({
+                    userName: '',
+                    email: '',
+                    password: '',
+                    password2: '',
+                    firstName: '',
+                    lastName: '',
+                    year: 0,
+                    month: 0,
+                    day: 0,
+                    height: 0,
+                    weight: 0,
+                    phoneNumber: '',
+                    level: '',
+                    sportName: ''
+                })
+            );
         }
     }
 

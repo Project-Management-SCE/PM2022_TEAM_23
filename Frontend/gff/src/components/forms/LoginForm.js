@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import './Form.css';
 import axios from "axios";
+import UserContext from "../../UserContext";
+import { Navigate } from "react-router-dom";
+import Home from "../pages/Home";
 
 class LoginForm extends React.Component {
 
@@ -8,98 +11,77 @@ class LoginForm extends React.Component {
         super(props);
         this.state = 
         {
-            Admin: [],
-            Coach: [],
-            Sportsman: [],
-            loggedUser: [],
-            userType: 0,
+            User: [],
+            userType: 'Admin',
             userName: '',
             password: '',
-            login: false
+            errMsg: ''
         }
     }
 
-    componentDidMount()
-    {
-        this.getAdmin();
-        this.getCoach();
-        this.getSportsman();
+    checkFields = (userName,password) => (userName&&password)? this.setState({errMsg:''}):this.setState({
+        errMsg:"Username and password are required! Please fill them in",
+        userName:'',
+        password:''
+    });
+    checkUser(User){
+        if(User) {
+            this.setState({errMsg:''});
+            return true;
+        }
+        else {
+            this.setState({errMsg: "User does not exsits! please try again"});
+            return false;
+        }
     }
 
-    getAdmin = async() => {
-        await axios.get("http://localhost:8080/admin/getAdmin")
-        .then(res => {
-            this.setState({
-                Admin:res.data
-            })
-        })
-    }
-
-    getCoach = async() => {
-        await axios.get("http://localhost:8080/coach/getCoach")
-        .then(res => {
-            this.setState({
-                Coach:res.data
-            })
-        })
-    }
-
-    getSportsman = async() => {
-        await axios.get("http://localhost:8080/sportsman/getSportsman")
-        .then(res => {
-            this.setState({
-                Sportsman:res.data
-            })
-        })
-    }
-
-    submit(event,userName){
+    async submit(event,userName,password,userType) {
+        const {user, isAuthenticated, LogIn, LogOut} = this.context;
         event.preventDefault();
+        this.checkFields(userName,password);
         if(!(userName==='')){
-                if(this.state.userType===0)
+                if(userType==="Admin")
                 {
-                    this.state.Admin.forEach(admin => {
-                        if(admin.userName === this.state.userName && admin.password === this.state.password)
-                        {
-                            this.setState({
-                                loggedUser: admin,
-                                login: true
-                            })
-                        }
-                    })
+                    await axios.get(`http://localhost:8080/admin/auth/${userName}/${password}`)
+                    .then((res) => {
+                        this.setState({
+                            User: res.data
+                        })
+                        {this.checkUser(this.state.User) && LogIn(this.state.User)};
+                    });
                 }
-                else if(this.state.userType===1)
+                else if(userType==="Coach")
                 {
-                    this.state.Coach.forEach(coach => {
-                        if(coach.userName === this.state.userName && coach.password === this.state.password)
-                        {
-                            this.setState({
-                                loggedUser: coach,
-                                login: true
-                            })
-                        }
-                    })
+                    await axios.get(`http://localhost:8080/coach/auth/${userName}/${password}`)
+                    .then((res) => {
+                        this.setState({
+                            User: res.data
+                        })
+                        {this.checkUser(this.state.User) && LogIn(this.state.User)};
+                    });
                 }
-                else if(this.state.userType===2)
+                else if(userType==="Sportsman")
                 {
-                    this.state.Sportsman.forEach(sportsman => {
-                        if(sportsman.userName === this.state.userName && sportsman.password === this.state.password)
-                        {
-                            this.setState({
-                                loggedUser: sportsman,
-                                login: true
-                            })
-                        }
-                    })
+                    await axios.get(`http://localhost:8080/sportsman/auth/${userName}/${password}`)
+                    .then((res) => {
+                        this.setState({
+                            User: res.data
+                        })
+                        {this.checkUser(this.state.User) && LogIn(this.state.User)};
+                    });
                 }
         }
+        return isAuthenticated;
     }
 
     render(){
+        const {user, isAuthenticated, LogIn, LogOut} = this.context;
         return (
             <div className='form-content'>
-            <form className="form" onSubmit={(e)=>this.submit(e,this.state.userName)}>
+                {isAuthenticated && (<Navigate to="/" replace={true} />)}
+            <form className="form" onSubmit={(e)=>this.submit(e,this.state.userName,this.state.password,this.state.userType)}>
                 <div className="logImg" />
+                <p aria-live="assertive">{this.state.errMsg}</p>
                 <h1>
                    Hey! Login to GoForFit
                 </h1>
@@ -109,15 +91,16 @@ class LoginForm extends React.Component {
                         User Type
                     </label>
                     <select
-                    value={this.state.userType} onChange={(e)=>this.setState({userType:e.target.value})} type="text"
+                    value={this.state.userType} onChange={(e)=>this.setState({userType:e.target.value,
+                    errMsg:''})} type="number"
                         id='usertype'
                          name='usertype'
                          className='form-input'
                          placeholder="Choose Type"
                     >
-                        <option value={0}>Admin</option>
-                        <option value={1}>Coach</option>
-                        <option value={2}>Sportsman</option>
+                        <option value="Admin">Admin</option>
+                        <option value="Coach">Coach</option>
+                        <option value="Sportsman">Sportsman</option>
                     </select>
                     </div>
                 <div className="form-inputs">
@@ -126,7 +109,8 @@ class LoginForm extends React.Component {
                         Username
                     </label>
                     <input
-                    value={this.state.userName} onChange={(e)=>this.setState({userName:e.target.value})} type="text"
+                    value={this.state.userName} onChange={(e)=>this.setState({userName:e.target.value,
+                        errMsg:''})} type="text"
                         id='username'
                          name='username'
                          className='form-input'
@@ -139,7 +123,8 @@ class LoginForm extends React.Component {
                         Password
                     </label>
                         <input
-                        value={this.state.password} onChange={(e)=>this.setState({password:e.target.value})} type="password"
+                        value={this.state.password} onChange={(e)=>this.setState({password:e.target.value,
+                        errMsg:''})} type="password"
                         id='password'
                          name='password'
                          className='form-input'
@@ -155,5 +140,7 @@ class LoginForm extends React.Component {
         );
     }
 }
+
+LoginForm.contextType = UserContext
 
 export default LoginForm;
