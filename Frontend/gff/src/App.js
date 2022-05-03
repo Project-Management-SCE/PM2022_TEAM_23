@@ -11,6 +11,7 @@ import {UserProvider} from './UserContext';
 import OurCoaches from './components/pages/OurCoaches';
 import MySportsmans from './components/pages/MySportsmans';
 import SportsmanProfile from './components/pages/SportsmanProfile';
+import Users from './components/pages/Users';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
             <Route path='/publicCoaches' element={<OurCoaches />} />
             <Route path='/MySportsmans' element={<MySportsmans />} />
             <Route path='/sportsman/MyProfile' element={<SportsmanProfile />} />
+            <Route path='/users' element={<Users/>}/>
         </Routes>
       </Router>
       </UserProvider>
