@@ -19,10 +19,17 @@ public class BackendApplication {
 		SpringApplication.run(BackendApplication.class, args);
 	}
 
+<<<<<<< Updated upstream
 //	@Bean
 //	@Autowired
 //	CommandLineRunner runner(SportsRepository repository, AdminRepository adminRepository, CoachRepository coachRepository, SportsmanRepository sportsmanRepository){
 //		return args -> {
+=======
+	@Bean
+	@Autowired
+	CommandLineRunner runner(SportsRepository repository, AdminRepository adminRepository, CoachRepository coachRepository, SportsmanRepository sportsmanRepository){
+		return args -> {
+>>>>>>> Stashed changes
 //			Admin admin1 = new Admin(
 //				"tomerbe3",
 //					"tomerbe3@gmail.com",
@@ -69,6 +76,7 @@ public class BackendApplication {
 //					"Semi-Pro",
 //					"Football"
 //			);
+<<<<<<< Updated upstream
 //
 //			Sports sports = new Sports(
 //					"Football",
@@ -87,4 +95,24 @@ public class BackendApplication {
 //			sportsmanRepository.save(sportsman);
 //		};
 //	}
+=======
+
+			Sports sports = new Sports(
+					"Football",
+					"A team sport played with a spherical ball between two teams of 11 players. It is played by approximately 250 million players in over 200 countries.",
+					"Matan Ben Ishay"
+			);
+			Sports sports2 = new Sports(
+					"CrossFit",
+					"CrossFit is a movement with over 5 million athletes and over 14,000 locations across the planet.",
+					"Tomer Ben Shimol"
+			);
+			repository.save(sports);
+			repository.save(sports2);
+//			adminRepository.save(admin1);
+//			coachRepository.save(coach);
+//			sportsmanRepository.save(sportsman);
+		};
+	}
+>>>>>>> Stashed changes
 }

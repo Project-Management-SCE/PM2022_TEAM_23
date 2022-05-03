@@ -16,7 +16,7 @@ public class SportsController {
     @GetMapping("/getSports")
     public List<Sports> getSports() {return sportsRepository.findAll();}
 
-    @GetMapping("/{id}")
+    @GetMapping("/saveSport/{id}")
     public Optional<Sports> getSportsByID(@PathVariable String id){
         return sportsRepository.findById(id);
     }
@@ -24,9 +24,9 @@ public class SportsController {
     @PostMapping("/add")
     public Sports saveSport(@RequestBody Sports sport){ return sportsRepository.save(sport); }
 
-    @DeleteMapping("/{id}")
-    public String deleteSport(@PathVariable String id) {
-        sportsRepository.deleteById(id);
-        return "Sport: " + id + "deleted";
+    @DeleteMapping("/deleteSport/{name}")
+    public String deleteSport(@PathVariable String name) {
+        sportsRepository.deleteById(name);
+        return "Sport: " + name + "deleted";
     }
 }
