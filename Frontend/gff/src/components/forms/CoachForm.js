@@ -12,6 +12,7 @@ class CoachForm extends React.Component {
             userName: '',
             email: '',
             password: '',
+            password2: '',
             firstName: '',
             lastName: '',
             year: 0,
@@ -26,31 +27,6 @@ class CoachForm extends React.Component {
         }
     }
 
-    componentDidMount()
-    {
-        axios.get("http://localhost:8080/coach/sign_up")
-        .then((res)=>{
-            this.setState({
-                Coach: res.data,
-                userName: '',
-                email: '',
-                password: '',
-                firstName: '',
-                lastName: '',
-                year: 0,
-                month: 0,
-                day: 0,
-                height: 0,
-                weight: 0,
-                phoneNumber: '',
-                licenseNumber: '',
-                workPlaceId: '',
-                sportKind: ''
-            })
-        })
-    }
-
-
     submit(event,userName){
         event.preventDefault();
         if(!(userName==='')){
@@ -60,9 +36,9 @@ class CoachForm extends React.Component {
                 password:this.state.password,
                 firstName:this.state.firstName,
                 lastName:this.state.lastName,
-                year:this.state.year,
-                month:this.state.month,
-                day:this.state.day,
+                yearOfBirth:this.state.year,
+                monthOfBirth:this.state.month,
+                dayOfBirth:this.state.day,
                 height:this.state.height,
                 weight:this.state.weight,
                 phoneNumber:this.state.phoneNumber,
@@ -70,7 +46,23 @@ class CoachForm extends React.Component {
                 workPlaceId:this.state.workPlaceId,
                 sportKind:this.state.sportKind
             }).then(()=>{
-                this.componentDidMount();
+                this.setState({
+                                userName: '',
+                                email: '',
+                                password: '',
+                                password2: '',
+                                firstName: '',
+                                lastName: '',
+                                year: 0,
+                                month: 0,
+                                day: 0,
+                                height: 0,
+                                weight: 0,
+                                phoneNumber: '',
+                                licenseNumber: '',
+                                workPlaceId: '',
+                                sportKind: ''
+                            })
             });
         }
     }
@@ -128,8 +120,8 @@ class CoachForm extends React.Component {
                         Confirm Your Password
                     </label>
                         <input
+                        value={this.state.password2} onChange={(e)=>this.setState({password2:e.target.value})} type="password"
                         id='password2'
-                         type='password' 
                          name='password2'
                          className='form-input'
                          placeholder="Enter your password"

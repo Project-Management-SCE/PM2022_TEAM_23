@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Button } from './Button';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
+import UserContext from '../UserContext';
 
 function Navbar() {
+  const {user, isAuthenticated, LogIn, LogOut} = useContext(UserContext);
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
 
@@ -30,6 +32,7 @@ function Navbar() {
         <div className='navbar-container'>
           <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
           <i class="fa-solid fa-person-running"/> GoForFit
+          {isAuthenticated?" - Hello " + user['userName']:null}
           </Link>
           <div className='menu-icon' onClick={handleClick}>
             <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
@@ -40,7 +43,19 @@ function Navbar() {
                 Home
               </Link>
             </li>
+            {!isAuthenticated &&
             <li className='nav-item'>
+              <Link to='/publicCoaches' className='nav-links' onClick={closeMobileMenu}>
+                Our Coaches
+              </Link>
+            </li>}
+            {isAuthenticated && user['type']==="Coach" &&
+            <li className='nav-item'>
+              <Link to='/MySportsmans' className='nav-links' onClick={closeMobileMenu}>
+                My Sportsmans
+              </Link>
+            </li>}
+            {!isAuthenticated && <li className='nav-item'>
               <Link
                 to='/about'
                 className='nav-links'
@@ -48,17 +63,34 @@ function Navbar() {
               >
                 About Us
               </Link>
-            </li>
-            <li className='nav-item'>
+            </li>}
+            {isAuthenticated && user['type']==="Sportsman" &&  <li className='nav-item'>
               <Link
-                to='/login'
+                to='/sportsman/MyProfile'
                 className='nav-links'
                 onClick={closeMobileMenu}
               >
-                Login
+                My Profile
               </Link>
+            </li>}
+            <li className='nav-item'>
+              {isAuthenticated?
+              <Link
+                to='/'
+                className='nav-links'
+                onClick={closeMobileMenu && LogOut}
+              >
+                Logout
+              </Link>:
+              <Link
+              to='/login'
+              className='nav-links'
+              onClick={closeMobileMenu}
+            >
+              Login
+            </Link>}
             </li>
-
+          
             <li>
               <Link
                 to='/sportsman/sign_up'
@@ -69,7 +101,7 @@ function Navbar() {
               </Link>
             </li>
           </ul>
-          {button && <Button type="submit" formaction="/sportsman/sign_up" buttonStyle='btn--outline'>SIGN UP</Button>}
+          {button && !isAuthenticated && <Button type="submit" formaction="/sportsman/sign_up" buttonStyle='btn--outline'>SIGN UP</Button>}
         </div>
       </nav>
     </>
