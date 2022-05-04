@@ -15,6 +15,8 @@ import Users from './components/pages/Users';
 import SportsForm from './components/forms/SportsForm';
 import EditSports from './components/pages/EditSports';
 import UpdateSport from './components/forms/UpdateSport';
+import AddCoach from './components/forms/AddCoach';
+import AddSportsman from './components/forms/AddSportsman';
 
 function App() {
   return (
@@ -34,6 +36,8 @@ function App() {
             <Route path='/editSports' element={<EditSports/>}/>
             <Route path='/addSport' element={<SportsForm/>}/>
             <Route path='/updateSport' element={<UpdateSport/>}/>
+            <Route path='/addCoach' element={<AddCoach/>}/>
+            <Route path='/addSportsman' element={<AddSportsman/>}/>
         </Routes>
       </Router>
       </UserProvider>

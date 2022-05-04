@@ -109,7 +109,7 @@ function Navbar() {
                 className='nav-links-mobile'
                 onClick={closeMobileMenu}
               >
-                Sign Up
+                Sign Up 
               </Link>
             </li>
           </ul>
