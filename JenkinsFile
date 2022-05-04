@@ -1,14 +1,14 @@
 pipeline {
     agent {
         docker {
-            image 'maven:3.5.4-alpine'
-            args '-v /root/.m2:/root/.m2'
+            image 'target/Backend-0.0.1-SNAPSHOT.jar'
+             args '-p 8080:8080'
         }
     }
     stages {
         stage('Build') {
             steps {
-                sh "./mvnw clean install -DskipTests"
+                sh "./mvnw spring-boot:run"
             }
         }
         stage("Runing unit tests") {
