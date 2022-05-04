@@ -61,6 +61,12 @@ function Navbar() {
                 Users
               </Link>
             </li>}
+            {isAuthenticated && user['type']==="Admin" &&
+            <li className='nav-item'>
+              <Link to='/editSports' className='nav-links' onClick={closeMobileMenu}>
+                Edit Sports
+              </Link>
+            </li>}
             {!isAuthenticated && <li className='nav-item'>
               <Link
                 to='/about'

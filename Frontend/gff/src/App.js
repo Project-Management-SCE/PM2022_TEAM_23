@@ -12,6 +12,9 @@ import OurCoaches from './components/pages/OurCoaches';
 import MySportsmans from './components/pages/MySportsmans';
 import SportsmanProfile from './components/pages/SportsmanProfile';
 import Users from './components/pages/Users';
+import SportsForm from './components/forms/SportsForm';
+import EditSports from './components/pages/EditSports';
+import UpdateSport from './components/forms/UpdateSport';
 
 function App() {
   return (
@@ -28,6 +31,9 @@ function App() {
             <Route path='/MySportsmans' element={<MySportsmans />} />
             <Route path='/sportsman/MyProfile' element={<SportsmanProfile />} />
             <Route path='/users' element={<Users/>}/>
+            <Route path='/editSports' element={<EditSports/>}/>
+            <Route path='/addSport' element={<SportsForm/>}/>
+            <Route path='/updateSport' element={<UpdateSport/>}/>
         </Routes>
       </Router>
       </UserProvider>
