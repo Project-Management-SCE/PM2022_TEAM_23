@@ -55,8 +55,6 @@ function Navbar() {
                 My Sportsmans
               </Link>
             </li>}
-<<<<<<< Updated upstream
-=======
             {isAuthenticated && user['type']==="Admin" &&
             <li className='nav-item'>
               <Link to='/users' className='nav-links' onClick={closeMobileMenu}>
@@ -69,8 +67,6 @@ function Navbar() {
                 Edit Sports
               </Link>
             </li>}
-
->>>>>>> Stashed changes
             {!isAuthenticated && <li className='nav-item'>
               <Link
                 to='/about'
