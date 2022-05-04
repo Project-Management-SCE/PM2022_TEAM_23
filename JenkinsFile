@@ -6,28 +6,28 @@ pipeline {
         }
     }
     stages {
+//         stage('Installations') {
+//             steps {
+//                 sh "cd Frontend/gff && npm install"
+//             }
+//         }
         stage('Build') {
             steps {
-                sh "./mvnw clean install -DskipTests"
+                sh 'mvn -B -DskipTests clean package'
+//                 sh 'cd Frontend/gff && npm start'
             }
         }
-        stage("Runing unit tests") {
-                            try {
-                                sh "./mvnw test -Punit"
-                            } catch(err) {
-                                step([$class: 'JUnitResultArchiver', testResults:
-                                  '**/target/surefire-reports/TEST-*UnitTest.xml'])
-                                throw err
-                            }
-                           step([$class: 'JUnitResultArchiver', testResults:
-                             '**/target/surefire-reports/TEST-*UnitTest.xml'])
-                        }
-        stage("Staging") {
-                        sh "pid=\$(lsof -i:8080 -t); kill -TERM \$pid "
-                          + "|| kill -KILL \$pid"
-                        withEnv(['JENKINS_NODE_COOKIE=dontkill']) {
-                            sh 'nohup ./mvnw spring-boot:run -Dserver.port=8080 &'
-                        }
-                    }
+        stage('Test') {
+            steps {
+                sh 'cd src/test/java'
+                sh 'mvn -Dtest=com.example.Backend.** test'
+            }
+            post {
+                always {
+                    junit 'target/surefire-reports/*.xml'
+                }
+            }
+        }
+
     }
 }

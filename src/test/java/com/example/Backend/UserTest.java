@@ -1,11 +1,12 @@
 package com.example.Backend;
+
 import com.example.Backend.Sports.Sports;
 import com.example.Backend.User.Admin;
 import com.example.Backend.User.Coach;
 import com.example.Backend.User.Sportsman;
 import com.example.Backend.User.User;
 import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -25,6 +26,8 @@ public class UserTest {
     public void init() {
         MockitoAnnotations.openMocks(this);
     }
+
+
     @Test
     //@org.testng.annotations.Test
     public void testSetters(){
@@ -111,6 +114,8 @@ public class UserTest {
         assertFalse(coach.getPhoneNumber()=="0501116677");
 
     }
+
+    @Test
    //@org.testng.annotations.Test
     public void testGetters () {
 

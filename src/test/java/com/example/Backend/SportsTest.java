@@ -1,7 +1,8 @@
 package com.example.Backend;
+
 import com.example.Backend.Sports.Sports;
 import org.junit.Before;
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -15,11 +16,16 @@ import static org.junit.Assert.*;
 public class SportsTest {
     @Mock
     Sports sports;
+
+
     @Before
     public void init() {
         MockitoAnnotations.openMocks(this);
     }
+
+
     @Test
+    //@org.testng.annotations.Test
     public void testGetters () {
         sports = new Sports("Soccer", "des", "Tomer");
         assertEquals("Soccer", sports.getName());
@@ -31,7 +37,8 @@ public class SportsTest {
 
     }
 
-    @org.testng.annotations.Test
+    @Test
+    //@org.testng.annotations.Test
     public void testSetters() {
 
         sports = new Sports("Soccer", "des", "Tomer");
