@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React from 'react'
-import { Link, Navigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import UserContext from '../../UserContext';
 import './Pages.css';
 
@@ -15,7 +15,7 @@ class EditSports extends React.Component {
 
     refreshPage() {
         window.location.reload(false);
-      }
+    }
 
     async deleteSport(name)
     {
@@ -56,7 +56,7 @@ class EditSports extends React.Component {
                         <th>{sport['name']}</th>
                         <th>{sport['description']}</th>
                         <th>{sport['coach']}</th>
-                        <th><button>Edit</button> <button onClick={() => this.deleteSport(sport['name']) && this.refreshPage()}>Delete</button></th>
+                        <th><button onClick={() => this.deleteSport(sport['name']) && this.refreshPage()}>Delete</button></th>
                         </tr>
                         </> ))}
                 </table>
@@ -64,16 +64,14 @@ class EditSports extends React.Component {
                 <br/>
                 <br/>
 
-                <Link to="../sportsForm" > Add Sports</Link>
+                <Link to="../addSport" >Add Sports</Link>&emsp;&emsp;<Link to="../updateSport" >Update Sports</Link>
             </div>
 
         </div>
-        
-
     )
     }
 }
 
-EditSports.contextType = UserContext
+EditSports.contextType = UserContext;
 
 export default EditSports

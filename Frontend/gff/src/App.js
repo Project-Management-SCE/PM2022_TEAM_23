@@ -11,12 +11,10 @@ import {UserProvider} from './UserContext';
 import OurCoaches from './components/pages/OurCoaches';
 import MySportsmans from './components/pages/MySportsmans';
 import SportsmanProfile from './components/pages/SportsmanProfile';
-<<<<<<< Updated upstream
-=======
 import Users from './components/pages/Users';
-import EditSports from './components/pages/EditSports';
 import SportsForm from './components/forms/SportsForm';
->>>>>>> Stashed changes
+import EditSports from './components/pages/EditSports';
+import UpdateSport from './components/forms/UpdateSport';
 
 function App() {
   return (
@@ -32,12 +30,10 @@ function App() {
             <Route path='/publicCoaches' element={<OurCoaches />} />
             <Route path='/MySportsmans' element={<MySportsmans />} />
             <Route path='/sportsman/MyProfile' element={<SportsmanProfile />} />
-<<<<<<< Updated upstream
-=======
             <Route path='/users' element={<Users/>}/>
             <Route path='/editSports' element={<EditSports/>}/>
-            <Route path='/sportsForm' element={<SportsForm/>}/>
->>>>>>> Stashed changes
+            <Route path='/addSport' element={<SportsForm/>}/>
+            <Route path='/updateSport' element={<UpdateSport/>}/>
         </Routes>
       </Router>
       </UserProvider>
