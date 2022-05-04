@@ -14,7 +14,7 @@ pipeline {
         stage('Test') {
             steps {
                 sh 'cd src/test/java'
-                sh 'mvn -Dtest=com.example.Backend.** test
+                sh 'mvn -Dtest=com.example.Backend.** test'
             }
             post {
                 always {
