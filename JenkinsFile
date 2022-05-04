@@ -13,7 +13,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-                sh 'cd src/test/java/com.example.Backend'
+                sh 'cd src/test/java/com/example/Backend'
                 sh 'mvn test -Dtest=BackendApplicationTest'
                 sh 'mvn test -Dtest=SportsTest'
                 sh 'mvn test -Dtest=UserTest'
