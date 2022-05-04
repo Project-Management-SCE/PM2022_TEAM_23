@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Installations') {
             steps {
-                sh "cd rontend/gff && npm install"
+                sh "cd Frontend/gff && npm install"
             }
         }
         stage('Build') {
