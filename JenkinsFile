@@ -1,7 +1,8 @@
 pipeline {
     agent {
         docker {
-            image 'target/Backend-0.0.1-SNAPSHOT.jar'
+            sh 'cd target'
+            image 'Backend-0.0.1-SNAPSHOT.jar'
              args '-p 8080:8080'
         }
     }
