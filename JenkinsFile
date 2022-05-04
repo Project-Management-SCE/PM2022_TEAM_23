@@ -1,14 +1,15 @@
+
 pipeline {
     agent {
         docker {
-            image 'Backend-0.0.1-SNAPSHOT.jar'
-             args '-p 8080:8080'
+            image 'maven:3.5.4-alpine'
+            args '-v /root/.m2:/root/.m2'
         }
     }
     stages {
         stage('Build') {
             steps {
-                sh "./mvnw spring-boot:run"
+                sh "./mvnw clean install -DskipTests"
             }
         }
         stage("Runing unit tests") {
@@ -19,15 +20,6 @@ pipeline {
                     always {
                         junit 'target/surefire-reports/*.xml'
                     }
-                }
-        }
-        stage("Staging") {
-                steps {
-                        sh "pid=\$(lsof -i:8080 -t); kill -TERM \$pid"
-                        sh "pid=\$(lsof -i:8080 -t); kill -KILL \$pid"
-                        withEnv(['JENKINS_NODE_COOKIE=dontkill']) {
-                            sh 'nohup ./mvnw spring-boot:run -Dserver.port=8080 &'
-                        }
                 }
         }
     }
