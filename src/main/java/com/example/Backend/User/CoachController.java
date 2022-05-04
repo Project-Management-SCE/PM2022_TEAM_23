@@ -40,7 +40,7 @@ public class CoachController {
             return null;
     }
 
-    @DeleteMapping("/{userName}")
+    @DeleteMapping("deleteCoach/{userName}")
     public String deleteCoach(@PathVariable String userName){
         coachRepository.deleteById(userName);
         return "Coach " + userName + "deleted";
