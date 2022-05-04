@@ -6,9 +6,15 @@ pipeline {
         }
     }
     stages {
+        stage('Installations') {
+            steps {
+                sh "cd rontend/gff && npm install"
+            }
+        }
         stage('Build') {
             steps {
                 sh 'mvn -B -DskipTests clean package'
+                sh 'cd Frontend/gff && npm start'
             }
         }
         stage('Test') {
