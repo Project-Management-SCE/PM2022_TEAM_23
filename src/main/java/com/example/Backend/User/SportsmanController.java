@@ -32,9 +32,9 @@ public class SportsmanController {
     @PostMapping("/sign_up")
     public Sportsman saveSportsman(@RequestBody Sportsman sportsman){ return sportsmanRepository.save(sportsman); }
 
-    @DeleteMapping("/{userName}")
+    @DeleteMapping("deleteSportsman/{userName}")
     public String deleteSportsman(@PathVariable String userName){
         sportsmanRepository.deleteById(userName);
-        return "User " + userName + "deleted";
+        return "Sportsman " + userName + "deleted";
     }
 }

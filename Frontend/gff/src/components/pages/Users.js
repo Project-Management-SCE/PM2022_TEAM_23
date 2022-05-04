@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React from 'react'
+import { Link } from 'react-router-dom';
 import UserContext from '../../UserContext';
 import './Pages.css';
 
@@ -12,6 +13,22 @@ class Users extends React.Component {
             Sportsman: [],
         }
     }
+
+    refreshPage() {
+        window.location.reload(false);
+    }
+
+    async deleteCoach(userName)
+    {
+        await axios.delete(`http://localhost:8080/coach/deleteCoach/${userName}`).
+        then(this.componentDidMount());
+    }
+    async deleteSportsman(userName)
+    {
+        await axios.delete(`http://localhost:8080/sportsman/deleteSportsman/${userName}`).
+        then(this.componentDidMount());
+    }
+
 
     FetchCoaches() {
         axios.get("http://localhost:8080/coach/getCoach")
@@ -40,29 +57,68 @@ class Users extends React.Component {
     const {user, isAuthenticated, LogIn, LogOut} = this.context;
     return (
         <div className='users'>
-            <h1>System Users:</h1>
+            <h1 align="center"><u>System Users:</u></h1>
             <br/>
-            <div className='users-container'>
-                <h2>Coaches:</h2>
+            <div className='users-container' align="center">
+                <h2 align="center">Coaches:</h2>
                 <br/>
-                {this.state.Coach.map(coach => (
+                <table border="1">
+                    <tr>
+                        <th>Name:</th>
+                        <th>User Name:  </th>
+                        <th>Email:</th>
+                        <th>License Number:</th>
+                        <th>Work Place ID:</th>
+                        <th>Options</th>
+
+                    </tr>
+                    {this.state.Coach.map(coach => (
                     <>
-                    <div>&emsp;<b>Name: </b>{coach['firstName']} {coach['lastName']}&emsp;<b>User Name: </b>{coach['userName']}&emsp;
-                    <b>Email: </b>{coach['email']}&emsp;
-                    <b>License Number: </b>{coach['licenseNumber']}&emsp;
-                    <b>Work Place ID: </b>{coach['workPlaceId']}</div>
-                    <br/>
-                    </>
-                ))}
-                <h2>Sportsmans:</h2>
+                    <tr>
+                    
+                    <th>{coach['firstName']} {coach['lastName']}</th>
+                    <th>{coach['userName']}</th>
+                    <th>{coach['email']}</th>
+                    <th>{coach['licenseNumber']}</th>
+                    <th>{coach['workPlaceId']}</th>
+                    <th><button onClick={() => this.deleteCoach(coach['userName']) && this.refreshPage()}>Delete</button></th>
+                    </tr>
+                    </> ))}
+
+                   
+               
+                </table>
+                
+                <br/><br/>
+                <h2 align="center">Sportsman:</h2>
+                <table border="1">
+                    <tr>
+                        <th>Name:</th>
+                        <th>User Name:  </th>
+                        <th>Email:</th>
+                        <th>Options</th>
+                    </tr>
+                    {this.state.Sportsman.map(sportsman => (
+                    <>
+                    <tr>
+                    
+                    <th>{sportsman['firstName']} {sportsman['lastName']}</th>
+                    <th>{sportsman['userName']}</th>
+                    <th>{sportsman['email']}</th>
+                    <th><button onClick={() => this.deleteSportsman(sportsman['userName']) && this.refreshPage()}>Delete</button></th>
+
+                    </tr>
+                    </> ))}
+
+                   
+               
+                </table>
                 <br/>
-                {this.state.Sportsman.map(sportsman => (
-                    <>
-                    <div>&emsp;<b>Name: </b>{sportsman['firstName']} {sportsman['lastName']}&emsp;<b>User Name: </b>{sportsman['userName']}&emsp;
-                    <b>Email: </b>{sportsman['email']}</div>
-                    <br/>
-                    </>
-                ))}
+                <br/>
+                <br/>
+
+                <Link to="../addCoach" >Add New Coach</Link>&emsp;&emsp;
+                <Link to="../addSportsman" >Add New Sportsman</Link>&emsp;&emsp;               
             </div>
         </div>
     )
