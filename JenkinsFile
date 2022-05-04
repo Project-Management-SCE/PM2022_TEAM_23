@@ -12,16 +12,14 @@ pipeline {
             }
         }
         stage("Runing unit tests") {
-                            try {
-                                sh "./mvnw test -Punit"
-                            } catch(err) {
-                                step([$class: 'JUnitResultArchiver', testResults:
-                                  '**/target/surefire-reports/TEST-*UnitTest.xml'])
-                                throw err
-                            }
-                           step([$class: 'JUnitResultArchiver', testResults:
-                             '**/target/surefire-reports/TEST-*UnitTest.xml'])
-                        }
+            steps {
+                    sh "./mvnw test -Punit"
+                }
+                post {
+                    always {
+                        junit 'target/surefire-reports/*.xml'
+                    }
+                }
         stage("Staging") {
                         sh "pid=\$(lsof -i:8080 -t); kill -TERM \$pid "
                           + "|| kill -KILL \$pid"
