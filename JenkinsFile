@@ -13,6 +13,7 @@ pipeline {
         }
         stage('Test') {
             steps {
+                sh 'cd test/java/com.example.Backend'
                 sh 'mvn test'
             }
             post {
