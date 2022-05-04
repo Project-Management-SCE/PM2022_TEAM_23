@@ -48,12 +48,6 @@
 	<build>
 		<plugins>
 			<plugin>
-				<groupId>com.seovic.maven.plugins</groupId>
-				<artifactId>npm-maven-plugin</artifactId>
-				<version>1.0.4</version>
-				<extensions>true</extensions>
-			</plugin>
-			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
