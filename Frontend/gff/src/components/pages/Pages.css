@@ -3,7 +3,7 @@
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  display: flex;
+  display:inline-block;
   height: 110vh;
   align-items: center;
   justify-content: center;
@@ -12,6 +12,15 @@
 
 .home h1{
   color: azure;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin-bottom: 50px;
+}
+
+.home-video
+{
+   position: fixed;
+   margin-top: 6%;
+   margin-left: 25%;
 }
 
 .about {
