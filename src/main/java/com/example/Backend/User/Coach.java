@@ -7,6 +7,7 @@ public class Coach extends User{
     private String licenseNumber;
     private String workPlaceId;
     private String sportKind;
+    private String[][] commonInjuries;
 
     public Coach(String userName,
                  String email,
@@ -27,6 +28,15 @@ public class Coach extends User{
         this.licenseNumber = licenseNumber;
         this.workPlaceId = workPlaceId;
         this.sportKind = sportKind;
+        this.commonInjuries = new String[4][3];
+        this.commonInjuries[0][0] = "Name";
+        this.commonInjuries[0][1] = "Caused by";
+        this.commonInjuries[0][2] = "Treatment";
+        for (int i = 1;i<4;i++){
+            for (int j=0;j<3;j++){
+                this.commonInjuries[i][j] = "Coming Soon...";
+            }
+        }
     }
 
     public String getLicenseNumber() {
@@ -69,5 +79,21 @@ public class Coach extends User{
 
     public String getSportKind() {
         return sportKind;
+    }
+
+    public void setSportKind(String sportKind) {
+        this.sportKind = sportKind;
+    }
+
+    public String[][] getCommonInjuries() {
+        return commonInjuries;
+    }
+
+    public void setCommonInjury(String name,String causedBy,String treatment,int row) {
+        if(row > 0 && row < 4) {
+            this.commonInjuries[row][0] = name;
+            this.commonInjuries[row][1] = causedBy;
+            this.commonInjuries[row][2] = treatment;
+        }
     }
 }

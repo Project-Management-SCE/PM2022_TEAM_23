@@ -52,7 +52,7 @@ async submit(event,name,description,coach) {
                         Sports Name
                     </label>
                     <input
-                    value={this.state.Name} onChange={(e)=>this.setState({name:e.target.value})} type="text"
+                    value={this.state.name} onChange={(e)=>this.setState({name:e.target.value})} type="text"
                         id='name'
                          name='name'
                          className='form-input'
@@ -65,7 +65,7 @@ async submit(event,name,description,coach) {
                         Description
                     </label>
                     <input
-                    value={this.state.Description} onChange={(e)=>this.setState({description:e.target.value})} type="text"
+                    value={this.state.description} onChange={(e)=>this.setState({description:e.target.value})} type="text"
                         id='description'
                          name='description'
                          className='form-input'
@@ -78,7 +78,7 @@ async submit(event,name,description,coach) {
                         Coach In Charge
                     </label>
                     <input
-                    value={this.state.Coach} onChange={(e)=>this.setState({coach:e.target.value})} type="text"
+                    value={this.state.coach} onChange={(e)=>this.setState({coach:e.target.value})} type="text"
                         id='coach'
                          name='coach'
                          className='form-input'

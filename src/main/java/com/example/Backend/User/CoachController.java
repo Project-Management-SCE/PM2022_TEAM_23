@@ -31,6 +31,19 @@ public class CoachController {
         return coach;
     }
 
+    @GetMapping("/addCommonInjury/{userName}/{name}/{causedBy}/{treatment}/{row}")
+    public Optional<Coach> saveInjury(@PathVariable String userName,@PathVariable String name,@PathVariable String causedBy,@PathVariable String treatment,@PathVariable int row)
+    {
+        System.out.println(userName + name + causedBy + treatment + row);
+        Optional<Coach> coach = coachRepository.findById(userName);
+        if (coach.isPresent())
+        {
+            coach.get().setCommonInjury(name,causedBy,treatment,row);
+            coachRepository.save(coach.get());
+        }
+        return coach;
+    }
+
     @PostMapping("/sign_up")
     public Coach saveCoach(@RequestBody Coach coach)
     {
