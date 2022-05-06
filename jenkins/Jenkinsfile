@@ -1,0 +1,38 @@
+pipeline {
+    agent {
+        docker {
+            image 'maven:3.5.4-alpine'
+            args '-v /root/.m2:/root/.m2'
+        }
+    }
+    stages {
+//         stage('Installations') {
+//             steps {
+//                 sh "cd Frontend/gff && npm install"
+//             }
+//         }
+        stage('Build') {
+            steps {
+                sh 'mvn -B -DskipTests clean package'
+//                 sh 'cd Frontend/gff && npm start'
+            }
+        }
+        stage('Test') {
+            steps {
+                sh 'cd src/test/java'
+                sh 'mvn -Dtest=com.example.Backend.** test'
+            }
+            post {
+                always {
+                    junit 'target/surefire-reports/*.xml'
+                }
+            }
+        }
+        stage('Deliver') { 
+            steps {
+                sh "chmod +x -R ./jenkins/scripts/deliver.sh"
+                sh './jenkins/scripts/deliver.sh' 
+            }
+        }
+    }
+}

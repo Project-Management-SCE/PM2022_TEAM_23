@@ -17,6 +17,10 @@ import EditSports from './components/pages/EditSports';
 import UpdateSport from './components/forms/UpdateSport';
 import AddCoach from './components/forms/AddCoach';
 import AddSportsman from './components/forms/AddSportsman';
+import AddInjury from './components/forms/AddInjury';
+import CommonInjuries from './components/pages/CommonInjuries';
+import CoachProfile from './components/pages/CoachProfile';
+import UploadVideo from './components/forms/UploadVideo';
 
 function App() {
   return (
@@ -38,6 +42,10 @@ function App() {
             <Route path='/updateSport' element={<UpdateSport/>}/>
             <Route path='/addCoach' element={<AddCoach/>}/>
             <Route path='/addSportsman' element={<AddSportsman/>}/>
+            <Route path='/addInjury' element={<AddInjury />}/>
+            <Route path='/commonInjuries' element={<CommonInjuries />}/>
+            <Route path='/coach/profile' element={<CoachProfile />}/>
+            <Route path='/coach/uploadVideo' element={<UploadVideo />}/>
         </Routes>
       </Router>
       </UserProvider>

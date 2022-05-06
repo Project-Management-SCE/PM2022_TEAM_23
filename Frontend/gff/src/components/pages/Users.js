@@ -18,14 +18,14 @@ class Users extends React.Component {
         window.location.reload(false);
     }
 
-    async deleteCoach(name)
+    async deleteCoach(userName)
     {
-        await axios.delete(`http://localhost:8080/sports/deleteSport/${name}`).
+        await axios.delete(`http://localhost:8080/coach/deleteCoach/${userName}`).
         then(this.componentDidMount());
     }
-    async deleteSportsman(name)
+    async deleteSportsman(userName)
     {
-        await axios.delete(`http://localhost:8080/sports/deleteSport/${name}`).
+        await axios.delete(`http://localhost:8080/sportsman/deleteSportsman/${userName}`).
         then(this.componentDidMount());
     }
 
@@ -81,7 +81,7 @@ class Users extends React.Component {
                     <th>{coach['email']}</th>
                     <th>{coach['licenseNumber']}</th>
                     <th>{coach['workPlaceId']}</th>
-                    <th><button>Delete</button></th>
+                    <th><button onClick={() => this.deleteCoach(coach['userName']) && this.refreshPage()}>Delete</button></th>
                     </tr>
                     </> ))}
 
@@ -105,7 +105,7 @@ class Users extends React.Component {
                     <th>{sportsman['firstName']} {sportsman['lastName']}</th>
                     <th>{sportsman['userName']}</th>
                     <th>{sportsman['email']}</th>
-                    <th><button>Delete</button></th>
+                    <th><button onClick={() => this.deleteSportsman(sportsman['userName']) && this.refreshPage()}>Delete</button></th>
 
                     </tr>
                     </> ))}

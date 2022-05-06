@@ -85,6 +85,33 @@ function Navbar() {
                 My Profile
               </Link>
             </li>}
+            {isAuthenticated && user['type']==="Coach" &&  <li className='nav-item'>
+              <Link
+                to={'/coach/profile'}
+                className='nav-links'
+                onClick={closeMobileMenu}
+              >
+                My Profile
+              </Link>
+            </li>}
+            {isAuthenticated && user['type']==="Sportsman" &&  <li className='nav-item'>
+              <Link
+                to={'/coach/profile'}
+                className='nav-links'
+                onClick={closeMobileMenu}
+              >
+                My Coach
+              </Link>
+            </li>}
+            {isAuthenticated && user['type']!="Admin" &&  <li className='nav-item'>
+              <Link
+                to='/commonInjuries'
+                className='nav-links'
+                onClick={closeMobileMenu}
+              >
+                Common Injuries
+              </Link>
+            </li>}
             <li className='nav-item'>
               {isAuthenticated?
               <Link
