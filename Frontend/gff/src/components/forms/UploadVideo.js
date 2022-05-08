@@ -24,21 +24,23 @@ class UploadVideo extends React.Component {
         if(!(description==='' && url==='')){
             if(level==="Beginner")
             {
-                await axios.get("http://localhost:3000/coach/uploadBeginnerWeeklySessions",userName,url,description)
-                .then(
+                await axios.post(`http://localhost:8080/coach/uploadBeginnerWeeklySessions/${userName}/${description}`,url)
+                .then((res) => {
+                    LogIn(res.data)
                     this.setState({
                         uploaded:true
                     })
-                )
+                })
             }
             else if(level==="Semi-Pro")
             {
-                await axios.get("http://localhost:8080/coach/uploadSemiProWeeklySessions",userName,url,description)
-                .then(
+                await axios.post(`http://localhost:8080/coach/uploadSemiProWeeklySessions/${userName}/${description}`,url)
+                .then((res) => {
+                    LogIn(res.data)
                     this.setState({
                         uploaded:true
                     })
-                )
+                })
             }
             else if(level==="Professional")
             {
@@ -57,7 +59,7 @@ class UploadVideo extends React.Component {
         const {user, isAuthenticated, LogIn, LogOut} = this.context;
         return (
             <div className='upload-vid-form-content'>
-                {/* {this.state.uploaded && (<Navigate to="/coach/profile" replace={true} />)} */}
+                {this.state.uploaded && (<Navigate to="/coach/profile" replace={true} />)}
             <form className="upload-vid-form" onSubmit={(e)=>this.submit(e,user.userName,this.state.level,this.state.url,this.state.description)}>
                 <h1>
                    Hey {user['userName']}! Upload Weekly Video:  

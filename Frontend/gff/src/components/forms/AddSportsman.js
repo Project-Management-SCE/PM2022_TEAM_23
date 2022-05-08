@@ -2,6 +2,7 @@ import React from "react";
 import './Form.css';
 import axios from "axios";
 import UserContext from "../../UserContext";
+import { Navigate } from "react-router-dom";
 
 class AddSportsman extends React.Component {
 
@@ -24,7 +25,8 @@ class AddSportsman extends React.Component {
             weight: 0,
             phoneNumber: '',
             level: '',
-            sportName: ''
+            sportName: '',
+            added:false
         }
     }
 
@@ -73,7 +75,8 @@ class AddSportsman extends React.Component {
                     weight: 0,
                     phoneNumber: '',
                     level: '',
-                    sportName: ''
+                    sportName: '',
+                    added:true
                 })
             );
         }
@@ -83,6 +86,7 @@ class AddSportsman extends React.Component {
         const {user,isAuthenticated,LogIn,LogOut} = this.context;
             return (
             <div className='form-content'>
+                {this.state.added && (<Navigate to="/users" replace={true} />)}
             <form className="form" onSubmit={(e)=>this.submit(e,this.state.userName)}>
                 <h1>
                    Hey {user.userName}! add a new sportsman to the system by filling out the information below.
