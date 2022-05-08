@@ -3,7 +3,7 @@
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  display:inline-block;
+  display:block;
   height: 110vh;
   align-items: center;
   justify-content: center;
@@ -11,7 +11,10 @@
 }
 
 .home h1{
-  color: azure;
+  position: fixed;
+  margin-top: 6%;
+  text-shadow: 5px 5px black;
+  color: rgb(52, 129, 211);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin-bottom: 50px;
 }
@@ -19,7 +22,7 @@
 .home-video
 {
    position: fixed;
-   margin-top: 6%;
+   margin-top: 12%;
    margin-left: 25%;
 }
 
@@ -128,4 +131,60 @@
   color: white;
   background-color: black;
   font-size: 2rem;
+}
+
+.coach-private{
+  margin-top: 50px;
+  margin-left: 50px;
+  display: inline;
+  border: 20px;
+}
+
+.coach-private h1{
+  font-size: 4rem;
+}
+
+
+.coach-private-details1{
+  display: flex;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 30%;
+  font-size: 1.5rem;
+}
+
+.coach-private-details2{
+  display: flex;
+  margin-left: 28%;
+  font-size: 1.5rem;
+}
+
+.coach-private-videos th{
+  height: 600px;
+  width: 600px;
+  font-size: 1.5rem;
+}
+
+.coach-private-videos{
+  margin-top: 30px;
+  margin-bottom: 50px;
+}
+
+.uploadlink{
+  background-color: black;
+  border-radius: 10px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 4rem;
+  font-weight: 900;
+  text-shadow: 3px;
+  color: rgb(52, 129, 211);
+}
+
+.doneButton{
+  text-align: center;
+  background-color: rgb(52, 129, 211);
+  color: black;
+  font-size: x-large;
+  height: 40px;
+  width: 60px;
 }

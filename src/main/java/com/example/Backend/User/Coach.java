@@ -7,6 +7,9 @@ public class Coach extends User{
     private String licenseNumber;
     private String workPlaceId;
     private String sportKind;
+    private String[] beginnerWeeklySession;
+    private String[] semiproWeeklySession;
+    private String[] professionalWeeklySession;
     private String[][] commonInjuries;
 
     public Coach(String userName,
@@ -37,6 +40,15 @@ public class Coach extends User{
                 this.commonInjuries[i][j] = "Coming Soon...";
             }
         }
+        this.beginnerWeeklySession = new String[2];
+        this.beginnerWeeklySession[0] = "url?";
+        this.beginnerWeeklySession[1] = "description?";
+        this.semiproWeeklySession = new String[2];
+        this.semiproWeeklySession[0] = "url?";
+        this.semiproWeeklySession[1] = "description?";
+        this.professionalWeeklySession = new String[2];
+        this.professionalWeeklySession[0] = "url?";
+        this.professionalWeeklySession[1] = "description?";
     }
 
     public String getLicenseNumber() {
@@ -95,5 +107,32 @@ public class Coach extends User{
             this.commonInjuries[row][1] = causedBy;
             this.commonInjuries[row][2] = treatment;
         }
+    }
+
+    public String[] getBeginnerWeeklySession() {
+        return beginnerWeeklySession;
+    }
+
+    public void setBeginnerWeeklySession(String url,String description) {
+        this.beginnerWeeklySession[0] = url;
+        this.beginnerWeeklySession[1] = description;
+    }
+
+    public String[] getSemiproWeeklySession() {
+        return semiproWeeklySession;
+    }
+
+    public void setSemiproWeeklySession(String url,String description) {
+        this.semiproWeeklySession[0] = url;
+        this.semiproWeeklySession[1] = description;
+    }
+
+    public String[] getProfessionalWeeklySession() {
+        return professionalWeeklySession;
+    }
+
+    public void setProfessionalWeeklySession(String url,String description) {
+        this.professionalWeeklySession[0] = url;
+        this.professionalWeeklySession[1] = description;
     }
 }
