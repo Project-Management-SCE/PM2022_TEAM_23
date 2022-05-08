@@ -2,6 +2,7 @@ package com.example.Backend;
 
 import com.example.Backend.Sports.Sports;
 import org.junit.Before;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -15,45 +16,79 @@ import static org.junit.Assert.*;
 
 public class SportsTest {
     @Mock
-    Sports sports;
-
+    static
+    Sports sports,sports1;
 
     @Before
     public void init() {
         MockitoAnnotations.openMocks(this);
     }
-
+    @BeforeAll
+    public static void setup() {
+        sports = new Sports("Soccer", "des", "Tomer");
+        sports1=new Sports("name","des","coach");
+    }
 
     @Test
-    //@org.testng.annotations.Test
-    public void testGetters () {
-        sports = new Sports("Soccer", "des", "Tomer");
+    public void testGetName () {
         assertEquals("Soccer", sports.getName());
-        assertEquals("des",sports.getDescription());
-        assertEquals("Tomer",sports.getCoach());
-        assertNotEquals("football",sports.getName());
-        assertNotEquals("Notgood",sports.getDescription());
+    }
+
+    @Test
+    public void testGetDescription () {
+
+        assertEquals("des", sports.getDescription());
+    }
+
+    @Test
+    public void testGetCoach () {
+        assertEquals("Tomer", sports.getCoach());
+    }
+
+    @Test
+    public void testCheckWrongName () {
+        assertNotEquals("football", sports.getName());
+    }
+
+    @Test
+    public void testCheckWrongDescription () {
+        assertNotEquals("Notgood", sports.getDescription());
+    }
+
+    @Test
+    public void testCheckWrongCoach () {
         assertNotEquals("Eli",sports.getCoach());
 
     }
 
     @Test
-    //@org.testng.annotations.Test
-    public void testSetters() {
+    public void testSetDescription() {
+        sports1.setDescription("good");
+        assertTrue(sports1.getDescription() == "good");
+    }
 
-        sports = new Sports("Soccer", "des", "Tomer");
-        sports.setName("football");
-        assertTrue(sports.getName() == "football");
-        sports.setDescription("good");
-        assertTrue(sports.getDescription() == "good");
-        sports.setCoach("matan");
-        assertTrue(sports.getCoach() == "matan");
-        sports.setName("football");
-        assertFalse(sports.getName() == "tennis");
-        sports.setDescription("good");
-        assertFalse(sports.getDescription() == "bad");
-        sports.setCoach("matan");
-        assertFalse(sports.getCoach() == "tony");
+    @Test
+    public void testSetCoach() {
+        sports1.setCoach("matan");
+        assertTrue(sports1.getCoach() == "matan");
+    }
+
+    @Test
+    public void testSetWrongName() {
+        sports1.setName("football");
+        assertFalse(sports1.getName() == "tennis");
+    }
+
+    @Test
+    public void testSetWrongDescription() {
+        sports1.setDescription("good");
+        assertFalse(sports1.getDescription() == "bad");
+    }
+
+    @Test
+    public void testSetWrongCoach() {
+        sports1.setCoach("matan");
+        assertFalse(sports1.getCoach() == "tony");
     }
 }
 

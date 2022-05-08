@@ -101,7 +101,7 @@ async submit(event,userName,row,name,causedBy,treatment) {
                 <div className="form-inputs">
                     <label htmlFor="treatment" 
                     className="form-label">
-                        Coach In Charge
+                        Treatment
                     </label>
                     <input
                     value={this.state.treatment} onChange={(e)=>this.setState({treatment:e.target.value})} type="text"

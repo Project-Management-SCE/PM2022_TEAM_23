@@ -30,62 +30,67 @@ public class UserTest {
 
     @Test
     //@org.testng.annotations.Test
-    public void testSetters(){
+    public void testSettersAdmin() {
         //ADMIN
-        admin = new Admin("tomerbe3","tomerbe3@gmail.com","tomer123","Tomer","Ben Shimol",1996,9,19,1.80F,82F,"0524858601");
+        admin = new Admin("tomerbe3", "tomerbe3@gmail.com", "tomer123", "Tomer", "Ben Shimol", 1996, 9, 19, 1.80F, 82F, "0524858601");
         admin.setUserName("matan15");
-        assertTrue(admin.getUserName()=="matan15");
+        assertTrue(admin.getUserName() == "matan15");
         admin.setPassword("12333");
-        assertTrue(admin.getPassword()=="12333");
+        assertTrue(admin.getPassword() == "12333");
         admin.setEmail("matan123@gmail.com");
-        assertTrue(admin.getEmail()=="matan123@gmail.com");
+        assertTrue(admin.getEmail() == "matan123@gmail.com");
         admin.setFirstName("matan");
-        assertTrue(admin.getFirstName()=="matan");
+        assertTrue(admin.getFirstName() == "matan");
         admin.setLastName("Ben Ishay");
-        assertTrue(admin.getLastName()=="Ben Ishay");
+        assertTrue(admin.getLastName() == "Ben Ishay");
         admin.setPhoneNumber("0541111111");
-        assertTrue(admin.getPhoneNumber()=="0541111111");
+        assertTrue(admin.getPhoneNumber() == "0541111111");
         admin.setUserName("matan15");
-        assertFalse(admin.getUserName()=="tomerbe3");
+        assertFalse(admin.getUserName() == "tomerbe3");
         admin.setPassword("12333");
-        assertFalse(admin.getPassword()=="tomer123");
+        assertFalse(admin.getPassword() == "tomer123");
         admin.setEmail("matan123@gmail.com");
-        assertFalse(admin.getEmail()=="tomerbe3@gmail.com");
+        assertFalse(admin.getEmail() == "tomerbe3@gmail.com");
         admin.setFirstName("matan");
-        assertFalse(admin.getFirstName()=="Tomer");
+        assertFalse(admin.getFirstName() == "Tomer");
         admin.setLastName("Ben Ishay");
-        assertFalse(admin.getLastName()=="Ben Shimol");
+        assertFalse(admin.getLastName() == "Ben Shimol");
         admin.setPhoneNumber("0541111111");
-        assertFalse(admin.getPhoneNumber()=="0524858601");
+        assertFalse(admin.getPhoneNumber() == "0524858601");
+    }
 
+    @Test
+    public void testSettersSportsmen() {
         //SPORTSMAN
-        sportsman = new Sportsman("david12","david12@gmail.com","david123","David","Davidov",2001,1,1,1.90F,85F,"0501116677","Semi-Pro","Football");
+        sportsman = new Sportsman("david12", "david12@gmail.com", "david123", "David", "Davidov", 2001, 1, 1, 1.90F, 85F, "0501116677", "Semi-Pro", "Football");
         sportsman.setUserName("matan15");
-        assertTrue(sportsman.getUserName()=="matan15");
+        assertTrue(sportsman.getUserName() == "matan15");
         sportsman.setPassword("12333");
-        assertTrue(sportsman.getPassword()=="12333");
+        assertTrue(sportsman.getPassword() == "12333");
         sportsman.setEmail("matan123@gmail.com");
-        assertTrue(sportsman.getEmail()=="matan123@gmail.com");
+        assertTrue(sportsman.getEmail() == "matan123@gmail.com");
         sportsman.setFirstName("matan");
-        assertTrue(sportsman.getFirstName()=="matan");
+        assertTrue(sportsman.getFirstName() == "matan");
         sportsman.setLastName("Ben Ishay");
-        assertTrue(sportsman.getLastName()=="Ben Ishay");
+        assertTrue(sportsman.getLastName() == "Ben Ishay");
         sportsman.setPhoneNumber("0541111111");
-        assertTrue(sportsman.getPhoneNumber()=="0541111111");
+        assertTrue(sportsman.getPhoneNumber() == "0541111111");
         sportsman.setUserName("matan15");
-        assertFalse(sportsman.getUserName()=="david12");
+        assertFalse(sportsman.getUserName() == "david12");
         sportsman.setPassword("12333");
-        assertFalse(sportsman.getPassword()=="david123");
+        assertFalse(sportsman.getPassword() == "david123");
         sportsman.setEmail("matan123@gmail.com");
-        assertFalse(sportsman.getEmail()=="david12@gmail.com");
+        assertFalse(sportsman.getEmail() == "david12@gmail.com");
         sportsman.setFirstName("matan");
-        assertFalse(sportsman.getFirstName()=="David");
+        assertFalse(sportsman.getFirstName() == "David");
         sportsman.setLastName("Ben Ishay");
-        assertFalse(sportsman.getLastName()=="Davidov");
+        assertFalse(sportsman.getLastName() == "Davidov");
         sportsman.setPhoneNumber("0541111111");
-        assertFalse(sportsman.getPhoneNumber()=="0501116677");
+        assertFalse(sportsman.getPhoneNumber() == "0501116677");
+    }
 
-
+    @Test
+    public void testSettersCoach() {
         //COACH
         coach = new Coach("matan12","matan12@gmail.com","matan123","Matan","Ben Ishay",1994,8,2,1.90F,85F,"0548162819","123456","1551","Football");
         coach.setUserName("Eli24");
@@ -112,15 +117,13 @@ public class UserTest {
         assertFalse(coach.getLastName()=="Davidov");
         coach.setPhoneNumber("0541111333");
         assertFalse(coach.getPhoneNumber()=="0501116677");
-
     }
 
     @Test
-   //@org.testng.annotations.Test
-    public void testGetters () {
-
+    //@org.testng.annotations.Test
+    public void testGettersAdmin () {
         //ADMIN
-        admin = new Admin("tomerbe3","tomerbe3@gmail.com","tomer123","Tomer","Ben Shimol",1996,9,19,1.80F,82F,"0524858601");
+        admin = new Admin("tomerbe3", "tomerbe3@gmail.com", "tomer123", "Tomer", "Ben Shimol", 1996, 9, 19, 1.80F, 82F, "0524858601");
         assertEquals("tomerbe3", admin.getUserName());
         assertEquals("tomer123", admin.getPassword());
         assertEquals("tomerbe3@gmail.com", admin.getEmail());
@@ -142,9 +145,12 @@ public class UserTest {
         assertNotEquals("2", admin.getDayOfBirth().toString());
         assertNotEquals("1.81", admin.getHeight().toString());
         assertNotEquals("0548162819", admin.getPhoneNumber());
+    }
 
+    @Test
+    public void testGettersSportsmen () {
         //SPORTSMAN
-        sportsman = new Sportsman("david12","david12@gmail.com","david123","David","Davidov",2001,1,1,1.90F,85F,"0501116677","Semi-Pro","Football");
+        sportsman = new Sportsman("david12", "david12@gmail.com", "david123", "David", "Davidov", 2001, 1, 1, 1.90F, 85F, "0501116677", "Semi-Pro", "Football");
         assertEquals("david12", sportsman.getUserName());
         assertEquals("david123", sportsman.getPassword());
         assertEquals("david12@gmail.com", sportsman.getEmail());
@@ -167,7 +173,10 @@ public class UserTest {
         assertNotEquals("0524858601", sportsman.getPhoneNumber());
         assertNotEquals("Basketball", sportsman.getSport());
         assertNotEquals("Beginner", sportsman.getLevel());
+    }
 
+    @Test
+    public void testGettersCoach () {
         //COACH
         coach = new Coach("matan12","matan12@gmail.com","matan123","Matan","Ben Ishay",1994,8,2,1.90F,85F,"0548162819","123456","1551","Football");
         assertEquals("matan12", coach.getUserName());
