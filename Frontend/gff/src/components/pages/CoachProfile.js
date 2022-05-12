@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React from 'react'
+import ReactStars from "react-rating-stars-component";
 import { Link } from 'react-router-dom';
 import ReactPlayer from 'react-player';
 import UserContext from '../../UserContext';
@@ -11,6 +12,7 @@ class CoachProfile extends React.Component {
         this.state = 
         {
             Coaches: [],
+            rating:0
         }
     }
 
@@ -23,12 +25,24 @@ class CoachProfile extends React.Component {
         });
     }
 
+    async setRating(rating) {
+        const {user, isAuthenticated, LogIn, LogOut} = this.context;
+        await axios.get(`http://localhost:8080/coach/updateRating/${rating}/${user.userName}`)
+        .then((res) => {
+            LogIn(res.data)
+    });
+    }
+
     componentDidMount(){
         this.FetchCoaches();
     }
 
     render() {
     const {user, isAuthenticated, LogIn, LogOut} = this.context;
+    const ratingChanged = (newRating) => {
+        console.log(newRating)
+        this.setRating(newRating);
+    };
     return (
         user['type']==="Coach" && 
         <div className='coach-private' align="center">
@@ -141,6 +155,19 @@ class CoachProfile extends React.Component {
                     </tr>
                     </>}
                 </table>
+                <h1>Rate Your Coach</h1>
+                <div className='rating'>
+                <ReactStars
+                    count={5}
+                    onChange={ratingChanged}
+                    size={60}
+                    isHalf={true}
+                    emptyIcon={<i className="far fa-star"></i>}
+                    halfIcon={<i className="fa fa-star-half-alt"></i>}
+                    fullIcon={<i className="fa fa-star"></i>}
+                    activeColor="#ffd700"
+                />
+                    </div> 
                 </div>
             </div>
             </>))}
