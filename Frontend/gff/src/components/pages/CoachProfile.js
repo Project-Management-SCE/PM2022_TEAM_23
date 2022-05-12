@@ -159,7 +159,7 @@ class CoachProfile extends React.Component {
                 <h1>Rate Your Coach</h1>
                 <div className='rating'>
                 <ReactStars
-                    count={3}
+                    count={5}
                     onChange={ratingChanged}
                     size={60}
                     isHalf={true}
