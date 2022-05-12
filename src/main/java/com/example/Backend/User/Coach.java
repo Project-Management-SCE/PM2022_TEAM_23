@@ -10,6 +10,7 @@ public class Coach extends User{
     private String[] beginnerWeeklySession;
     private String[] semiproWeeklySession;
     private String[] professionalWeeklySession;
+    private String weeklyMotivation;
     private String[][] commonInjuries;
 
     public Coach(String userName,
@@ -49,6 +50,7 @@ public class Coach extends User{
         this.professionalWeeklySession = new String[2];
         this.professionalWeeklySession[0] = "url?";
         this.professionalWeeklySession[1] = "description?";
+        this.weeklyMotivation = "url?";
     }
 
     public String getLicenseNumber() {
@@ -134,5 +136,13 @@ public class Coach extends User{
     public void setProfessionalWeeklySession(String url,String description) {
         this.professionalWeeklySession[0] = url;
         this.professionalWeeklySession[1] = description;
+    }
+
+    public String getWeeklyMotivation() {
+        return weeklyMotivation;
+    }
+
+    public void setWeeklyMotivation(String url) {
+        this.weeklyMotivation = url;
     }
 }

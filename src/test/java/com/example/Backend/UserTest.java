@@ -117,6 +117,11 @@ public class UserTest {
         assertFalse(coach.getLastName()=="Davidov");
         coach.setPhoneNumber("0541111333");
         assertFalse(coach.getPhoneNumber()=="0501116677");
+        //Hackaton tests
+        coach.setWeeklyMotivation("https://www.youtube.com/watch?v=Asmzihl4qww&t=4s");
+        assertTrue(coach.getWeeklyMotivation()=="https://www.youtube.com/watch?v=Asmzihl4qww&t=4s");
+        assertFalse(coach.getWeeklyMotivation()=="url?");
+
     }
 
     @Test
@@ -203,5 +208,7 @@ public class UserTest {
         assertNotEquals("Basketball", coach.getSportKind());
         assertNotEquals("65432", coach.getLicenseNumber());
         assertNotEquals("1", coach.getWorkPlaceId());
+        //Hackaton tests
+        assertEquals("url?", coach.getWeeklyMotivation());
     }
 }

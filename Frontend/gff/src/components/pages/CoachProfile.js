@@ -52,6 +52,14 @@ class CoachProfile extends React.Component {
                 <div className='coach-private-videos' align="center">
                     <h1><u>My Uploads:</u></h1>
                     <br/>
+                {user.weeklyMotivation!="url?" &&
+                 <div className='motivation-vid'>
+                    <p>Weekly Motivation:</p>
+                    <br/>
+                    <ReactPlayer height='600px' width='900px' controls url={user.weeklyMotivation}/>
+                    <br/>
+                    <br/>
+                </div>}
                 <table border="1">
                     <tr>
                         <th>Beginner Weekly Session</th>

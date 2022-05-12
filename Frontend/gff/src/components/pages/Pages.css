@@ -188,3 +188,9 @@
   height: 40px;
   width: 60px;
 }
+
+.motivation-vid p{
+  font-size: 2rem;
+  font-weight: 700;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
