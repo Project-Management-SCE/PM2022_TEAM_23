@@ -9,9 +9,12 @@ class SportsmanProfile extends React.Component {
         super(props);
         this.state =
         {
+            Sports:[],
             bmi:'',
             weightFlag:0,
-            weight:0
+            weight:0,
+            sportFlag:0,
+            sportName:''
         }
     }
     
@@ -27,6 +30,16 @@ class SportsmanProfile extends React.Component {
         this.setState({bmi: String(bmi)})
     }
 
+    async getSports() {
+        await axios.get("http://localhost:8080/sports/getSports")
+        .then(res => {
+            this.setState({
+                Sports:res.data,
+                sportName:res.data[0].name
+            })
+        })
+    }
+
     async setWieght(userName,weight) {
         const {user, isAuthenticated, LogIn, LogOut} = this.context;
         await axios.get(`http://localhost:8080/sportsman/updateWeight/${userName}/${weight}`)
@@ -36,6 +49,21 @@ class SportsmanProfile extends React.Component {
                 weightFlag:0
             });
     });
+    }
+
+    async setSport(userName,sportName) {
+        const {user, isAuthenticated, LogIn, LogOut} = this.context;
+        await axios.get(`http://localhost:8080/sportsman/updateSport/${userName}/${sportName}`)
+        .then((res) => {
+            LogIn(res.data)
+            this.setState({
+                sportFlag:0
+            });
+    });
+    }
+
+    componentDidMount(){
+        this.getSports();
     }
 
     render() {
@@ -60,7 +88,7 @@ class SportsmanProfile extends React.Component {
                 <div><input 
                 value={this.state.weight} 
                 onChange={(e)=>this.setState({weight:e.target.value})} 
-                type="text"
+                type="number"
                 id='weight'
                 name='weight'
                 placeholder="Enter your new weight"
@@ -74,7 +102,22 @@ class SportsmanProfile extends React.Component {
                 <br/>
                 <div>Phone Number: {user['phoneNumber']}</div>
                 <br/>
-                <div>Sport: {user['sport']}</div>
+                {this.state.sportFlag===0 &&
+                <div>Sport: {user['sport']}&nbsp;<button onClick={() => this.setState({sportFlag:1})}>Change</button></div>}
+                {this.state.sportFlag===1 && 
+                <div>
+                <select
+                value={this.state.sportName} onChange={(e)=>this.setState({sportName:e.target.value})} type="text"
+                id='sport'
+                name='sport'
+                className='form-input'>
+                {
+                    this.state.Sports.map( Sport => (Sport['name']!=user.sport &&
+                        <option value={Sport['name']}>{Sport['name']}</option>
+                    ))
+                }
+                </select>&nbsp;<button onClick={() => this.setSport(user.userName,this.state.sportName)}>Submit</button>
+                </div>}
                 <br/>
                 <div>Level: {user['level']}</div>
             </div>

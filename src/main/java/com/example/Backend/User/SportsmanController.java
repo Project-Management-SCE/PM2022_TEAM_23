@@ -34,10 +34,21 @@ public class SportsmanController {
     public Optional<Sportsman> changeWeight(@PathVariable String userName,@PathVariable float weight)
     {
         Optional<Sportsman> sportsman = sportsmanRepository.findById(userName);
-        System.out.println(sportsman);
         if (sportsman.isPresent())
         {
             sportsman.get().setWeight(weight);
+            sportsmanRepository.save(sportsman.get());
+        }
+        return sportsman;
+    }
+
+    @GetMapping("/updateSport/{userName}/{sportName}")
+    public Optional<Sportsman> changeSport(@PathVariable String userName,@PathVariable String sportName)
+    {
+        Optional<Sportsman> sportsman = sportsmanRepository.findById(userName);
+        if (sportsman.isPresent())
+        {
+            sportsman.get().setSport(sportName);
             sportsmanRepository.save(sportsman.get());
         }
         return sportsman;

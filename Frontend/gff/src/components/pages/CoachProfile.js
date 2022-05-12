@@ -104,6 +104,14 @@ class CoachProfile extends React.Component {
                 <b>Work Place ID:</b>&thinsp;&thinsp;<p>{coach['workPlaceId']}</p></div>
                 <br/>
                 <br/>
+                {coach['weeklyMotivation']!="url?" &&
+                 <div className='motivation-vid'>
+                    <p>Weekly Motivation:</p>
+                    <br/>
+                    <ReactPlayer height='600px' width='900px' controls url={coach['weeklyMotivation']}/>
+                    <br/>
+                    <br/>
+                </div>}
                 <div className='coach-private-videos' align="center">
                     <h1><u>My {user.level} Weekly Session:</u></h1>
                     <br/>
