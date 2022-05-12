@@ -1,5 +1,6 @@
 package com.example.Backend.User;
 
+import org.omg.CORBA.PUBLIC_MEMBER;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,6 +26,19 @@ public class SportsmanController {
             {
                 return sportsman;
             }
+        }
+        return sportsman;
+    }
+
+    @GetMapping("/updateWeight/{userName}/{weight}")
+    public Optional<Sportsman> changeWeight(@PathVariable String userName,@PathVariable float weight)
+    {
+        Optional<Sportsman> sportsman = sportsmanRepository.findById(userName);
+        System.out.println(sportsman);
+        if (sportsman.isPresent())
+        {
+            sportsman.get().setWeight(weight);
+            sportsmanRepository.save(sportsman.get());
         }
         return sportsman;
     }
