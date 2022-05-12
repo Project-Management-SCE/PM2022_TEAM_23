@@ -98,7 +98,7 @@ public class CoachController {
         return coach;
     }
 
-    @GetMapping(value="/updateRating/{rating}/{userName}")
+    @GetMapping("/updateRating/{rating}/{userName}")
     public Optional<Coach> UpdateRating(@PathVariable int rating,@PathVariable String userName){
         System.out.print(rating);
         Optional<Coach> coach = coachRepository.findById(userName);

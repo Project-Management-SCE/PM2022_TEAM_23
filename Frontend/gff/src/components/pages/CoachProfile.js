@@ -12,25 +12,27 @@ class CoachProfile extends React.Component {
         this.state = 
         {
             Coaches: [],
-            rating:0
+            coachUserName:''
         }
     }
 
     FetchCoaches() {
+        const {user, isAuthenticated, LogIn, LogOut} = this.context;
         axios.get("http://localhost:8080/coach/getCoach")
         .then((res) => {
-            this.setState({
-                Coaches: res.data
-            })
+            res.data.map(coach => (
+                coach.sportKind===user.sport?this.setState({
+                    Coaches:res.data,
+                    coachUserName:coach.userName
+                }):this.setState({
+                    Coaches:res.data,
+                })
+            ))
         });
     }
 
     async setRating(rating) {
-        const {user, isAuthenticated, LogIn, LogOut} = this.context;
-        await axios.get(`http://localhost:8080/coach/updateRating/${rating}/${user.userName}`)
-        .then((res) => {
-            LogIn(res.data)
-    });
+        await axios.get(`http://localhost:8080/coach/updateRating/${rating}/${this.state.coachUserName}`);
     }
 
     componentDidMount(){
@@ -40,8 +42,7 @@ class CoachProfile extends React.Component {
     render() {
     const {user, isAuthenticated, LogIn, LogOut} = this.context;
     const ratingChanged = (newRating) => {
-        console.log(newRating)
-        this.setRating(newRating);
+        this.setRating(newRating)
     };
     return (
         user['type']==="Coach" && 
@@ -158,7 +159,7 @@ class CoachProfile extends React.Component {
                 <h1>Rate Your Coach</h1>
                 <div className='rating'>
                 <ReactStars
-                    count={5}
+                    count={3}
                     onChange={ratingChanged}
                     size={60}
                     isHalf={true}
