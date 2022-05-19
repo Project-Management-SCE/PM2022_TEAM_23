@@ -37,4 +37,8 @@ public class Sportsman extends User {
     public String getSport() {
         return sportName;
     }
+
+    public void setSport(String sportName) {
+        this.sportName = sportName;
+    }
 }

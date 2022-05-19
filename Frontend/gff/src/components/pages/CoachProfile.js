@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React from 'react'
+import ReactStars from "react-rating-stars-component";
 import { Link } from 'react-router-dom';
 import ReactPlayer from 'react-player';
 import UserContext from '../../UserContext';
@@ -11,16 +12,27 @@ class CoachProfile extends React.Component {
         this.state = 
         {
             Coaches: [],
+            coachUserName:''
         }
     }
 
     FetchCoaches() {
+        const {user, isAuthenticated, LogIn, LogOut} = this.context;
         axios.get("http://localhost:8080/coach/getCoach")
         .then((res) => {
-            this.setState({
-                Coaches: res.data
-            })
+            res.data.map(coach => (
+                coach.sportKind===user.sport?this.setState({
+                    Coaches:res.data,
+                    coachUserName:coach.userName
+                }):this.setState({
+                    Coaches:res.data,
+                })
+            ))
         });
+    }
+
+    async setRating(rating) {
+        await axios.get(`http://localhost:8080/coach/updateRating/${rating}/${this.state.coachUserName}`);
     }
 
     componentDidMount(){
@@ -29,6 +41,9 @@ class CoachProfile extends React.Component {
 
     render() {
     const {user, isAuthenticated, LogIn, LogOut} = this.context;
+    const ratingChanged = (newRating) => {
+        this.setRating(newRating)
+    };
     return (
         user['type']==="Coach" && 
         <div className='coach-private' align="center">
@@ -52,6 +67,14 @@ class CoachProfile extends React.Component {
                 <div className='coach-private-videos' align="center">
                     <h1><u>My Uploads:</u></h1>
                     <br/>
+                {user.weeklyMotivation!="url?" &&
+                 <div className='motivation-vid'>
+                    <p>Weekly Motivation:</p>
+                    <br/>
+                    <ReactPlayer height='600px' width='900px' controls url={user.weeklyMotivation}/>
+                    <br/>
+                    <br/>
+                </div>}
                 <table border="1">
                     <tr>
                         <th>Beginner Weekly Session</th>
@@ -96,6 +119,14 @@ class CoachProfile extends React.Component {
                 <b>Work Place ID:</b>&thinsp;&thinsp;<p>{coach['workPlaceId']}</p></div>
                 <br/>
                 <br/>
+                {coach['weeklyMotivation']!="url?" &&
+                 <div className='motivation-vid'>
+                    <p>Weekly Motivation:</p>
+                    <br/>
+                    <ReactPlayer height='600px' width='900px' controls url={coach['weeklyMotivation']}/>
+                    <br/>
+                    <br/>
+                </div>}
                 <div className='coach-private-videos' align="center">
                     <h1><u>My {user.level} Weekly Session:</u></h1>
                     <br/>
@@ -125,6 +156,19 @@ class CoachProfile extends React.Component {
                     </tr>
                     </>}
                 </table>
+                <h1>Rate Your Coach</h1>
+                <div className='rating'>
+                <ReactStars
+                    count={5}
+                    onChange={ratingChanged}
+                    size={60}
+                    isHalf={true}
+                    emptyIcon={<i className="far fa-star"></i>}
+                    halfIcon={<i className="fa fa-star-half-alt"></i>}
+                    fullIcon={<i className="fa fa-star"></i>}
+                    activeColor="#ffd700"
+                />
+                    </div> 
                 </div>
             </div>
             </>))}

@@ -85,6 +85,31 @@ public class CoachController {
         return coach;
     }
 
+    @PostMapping("/uploadWeeklyMotivation/{userName}")
+    public Optional<Coach> saveWeeklyMotivation(@RequestBody String url,@PathVariable String userName) throws UnsupportedEncodingException
+    {
+        String urlAfterDecoding = java.net.URLDecoder.decode(url, StandardCharsets.UTF_8.name());
+        Optional<Coach> coach = coachRepository.findById(userName);
+        if (coach.isPresent())
+        {
+            coach.get().setWeeklyMotivation(urlAfterDecoding);
+            coachRepository.save(coach.get());
+        }
+        return coach;
+    }
+
+    @GetMapping("/updateRating/{rating}/{userName}")
+    public Optional<Coach> UpdateRating(@PathVariable int rating,@PathVariable String userName){
+        System.out.print(rating);
+        Optional<Coach> coach = coachRepository.findById(userName);
+        if (coach.isPresent())
+        {
+            coach.get().setRating(rating);
+            coachRepository.save(coach.get());
+        }
+        return coach;
+    }
+
     @PostMapping("/sign_up")
     public Coach saveCoach(@RequestBody Coach coach)
     {

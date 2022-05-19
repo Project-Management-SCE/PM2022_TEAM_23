@@ -11,18 +11,18 @@ class UploadVideo extends React.Component {
         super(props);
         this.state = 
         {
-            level:'Beginner',
+            type:'Beginner',
             url: '',
             description: '',
             uploaded: false
         }
     }
 
-    async submit(event,userName,level,url,description) {
+    async submit(event,userName,type,url,description) {
         event.preventDefault();
         const {user, isAuthenticated, LogIn, LogOut} = this.context;
         if(!(description==='' && url==='')){
-            if(level==="Beginner")
+            if(type==="Beginner")
             {
                 await axios.post(`http://localhost:8080/coach/uploadBeginnerWeeklySessions/${userName}/${description}`,url)
                 .then((res) => {
@@ -32,7 +32,7 @@ class UploadVideo extends React.Component {
                     })
                 })
             }
-            else if(level==="Semi-Pro")
+            else if(type==="Semi-Pro")
             {
                 await axios.post(`http://localhost:8080/coach/uploadSemiProWeeklySessions/${userName}/${description}`,url)
                 .then((res) => {
@@ -42,9 +42,19 @@ class UploadVideo extends React.Component {
                     })
                 })
             }
-            else if(level==="Professional")
+            else if(type==="Professional")
             {
                 await axios.post(`http://localhost:8080/coach/uploadProfessionalWeeklySessions/${userName}/${description}`,url)
+                .then((res) => {
+                    LogIn(res.data)
+                    this.setState({
+                        uploaded:true
+                    })
+                })
+            }
+            else if(type==="Motivation")
+            {
+                await axios.post(`http://localhost:8080/coach/uploadWeeklyMotivation/${userName}`,url)
                 .then((res) => {
                     LogIn(res.data)
                     this.setState({
@@ -60,23 +70,24 @@ class UploadVideo extends React.Component {
         return (
             <div className='upload-vid-form-content'>
                 {this.state.uploaded && (<Navigate to="/coach/profile" replace={true} />)}
-            <form className="upload-vid-form" onSubmit={(e)=>this.submit(e,user.userName,this.state.level,this.state.url,this.state.description)}>
+            <form className="upload-vid-form" onSubmit={(e)=>this.submit(e,user.userName,this.state.type,this.state.url,this.state.description)}>
                 <h1>
                    Hey {user['userName']}! Upload Weekly Video:  
                 </h1>
                 <div className="form-inputs">
                     <label htmlFor="usertype" 
                     className="form-label">
-                        Choose Level
+                        Choose Type
                     </label>
                     <select
-                        value={this.state.level} onChange={(e)=>this.setState({level:e.target.value})} type="text"
-                        id='level'
-                        name='level'
+                        value={this.state.type} onChange={(e)=>this.setState({type:e.target.value})} type="text"
+                        id='type'
+                        name='type'
                         className='form-input'>
                         <option value="Beginner">Beginner</option>
                         <option value="Semi-Pro">Semi-Pro</option>
                         <option value="Professional">Professional</option>
+                        <option value="Motivation">Motivation</option>
                     </select>
                     </div>
                 <div className="form-inputs">
@@ -92,7 +103,7 @@ class UploadVideo extends React.Component {
                          placeholder="Url"
                     />  
                 </div>  
-                <div className="form-inputs">
+                {this.state.type!="Motivation" && <div className="form-inputs">
                     <label htmlFor="usertype" 
                     className="form-label">
                         Description
@@ -104,7 +115,7 @@ class UploadVideo extends React.Component {
                          className='form-input'
                          placeholder="Please Add A Description/Explanation"
                     />
-                </div>                     
+                </div>}                     
                 <button className="form-input-btn"
                     type='submit'>
                     Upload
