@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React from 'react'
 import ReactStars from "react-rating-stars-component";
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import ReactPlayer from 'react-player';
 import UserContext from '../../UserContext';
 import './Pages.css';
@@ -12,7 +12,8 @@ class CoachProfile extends React.Component {
         this.state = 
         {
             Coaches: [],
-            coachUserName:''
+            coachUserName:'',
+            saved:false
         }
     }
 
@@ -29,6 +30,17 @@ class CoachProfile extends React.Component {
                 })
             ))
         });
+    }
+
+    async SaveWorkout(url) {
+        const {user, isAuthenticated, LogIn, LogOut} = this.context;
+        await axios.post(`http://localhost:8080/sportsman/saveWorkout/${user.userName}`,url)
+                .then((res) => {
+                    LogIn(res.data)
+                    this.setState({
+                        saved:true
+                    })
+                })
     }
 
     async setRating(rating) {
@@ -106,6 +118,7 @@ class CoachProfile extends React.Component {
             <h1>Coach {coach['firstName']}&thinsp;{coach['lastName']}</h1>
             <br/>
             <div className='coach-private-container' align="center">
+                {this.state.saved && (<Navigate to="/sportsman/myWorkouts" replace={true} />)}
                 <div className='coach-private-details1' align="center">
                 <b>User Name:</b>&thinsp;&thinsp;<p>{coach['userName']}</p>&emsp;
                 <b>Email:</b>&thinsp;&thinsp;<p>{coach['email']}</p>&emsp;
@@ -135,14 +148,14 @@ class CoachProfile extends React.Component {
                     <>
                     <tr>
                         <th>Hello {user.firstName}&thinsp;{user.lastName},&thinsp;Here Is Your Weekly Session!</th>
-                        <th><ReactPlayer height='600px' width='900px' controls url={coach['beginnerWeeklySession'][0]}/> Please Click <button className='doneButton'>Here</button> When You're Done</th>
+                        <th><ReactPlayer height='600px' width='900px' controls url={coach['beginnerWeeklySession'][0]}/> Please Click <button className='doneButton' onClick={() => this.SaveWorkout(coach['beginnerWeeklySession'][0])}>Here</button> When You're Done</th>
                         <th><p><u>Description:</u>&thinsp;{coach['beginnerWeeklySession'][1]}</p></th>
                     </tr>
                     </>}
                     {user.level === "Semi-Pro" && 
                     <>
                     <tr>
-                        <th>Hello {user.firstName}&thinsp;{user.lastName},&thinsp;Here Is Your Weekly Session! Please Click <button className='doneButton'>Here</button> When You're Done</th>
+                        <th>Hello {user.firstName}&thinsp;{user.lastName},&thinsp;Here Is Your Weekly Session! Please Click <button className='doneButton' onClick={() => this.SaveWorkout(coach['semiproWeeklySession'][0])}>Here</button> When You're Done</th>
                         <th><ReactPlayer height='600px' width='900px' controls url={coach['semiproWeeklySession'][0]}/></th>
                         <th><p><u>Description:</u>&thinsp;{coach['semiproWeeklySession'][1]}</p></th>
                     </tr>
@@ -150,7 +163,7 @@ class CoachProfile extends React.Component {
                     {user.level === "Professional" && 
                     <>
                     <tr>
-                        <th>Hello {user.firstName}&thinsp;{user.lastName},&thinsp;Here Is Your Weekly Session! Please Click <button className='doneButton'>Here</button> When You're Done</th>
+                        <th>Hello {user.firstName}&thinsp;{user.lastName},&thinsp;Here Is Your Weekly Session! Please Click <button className='doneButton' onClick={() => this.SaveWorkout(coach['professionalWeeklySession'][0])}>Here</button> When You're Done</th>
                         <th><ReactPlayer height='600px' width='900px' controls url={coach['professionalWeeklySession'][0]}/></th>
                         <th><p><u>Description:</u>&thinsp;{coach['professionalWeeklySession'][1]}</p></th>
                     </tr>

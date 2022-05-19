@@ -283,7 +283,7 @@ class AddSportsman extends React.Component {
           
                 <button className="form-input-btn"
                     type='submit'>
-                    Sign up
+                    Add
                 </button>
                 <span className="form-input-login">
                     Want to sign up as a Coach? click here! 

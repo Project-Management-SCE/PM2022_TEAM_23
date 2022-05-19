@@ -21,6 +21,7 @@ import AddInjury from './components/forms/AddInjury';
 import CommonInjuries from './components/pages/CommonInjuries';
 import CoachProfile from './components/pages/CoachProfile';
 import UploadVideo from './components/forms/UploadVideo';
+import MyWorkouts from './components/pages/MyWorkouts';
 
 function App() {
   return (
@@ -46,6 +47,7 @@ function App() {
             <Route path='/commonInjuries' element={<CommonInjuries />}/>
             <Route path='/coach/profile' element={<CoachProfile />}/>
             <Route path='/coach/uploadVideo' element={<UploadVideo />}/>
+            <Route path='/sportsman/myWorkouts' element={<MyWorkouts/>}/>
         </Routes>
       </Router>
       </UserProvider>
