@@ -112,6 +112,15 @@ function Navbar() {
                 My Coach
               </Link>
             </li>}
+            {isAuthenticated && user['type']==="Admin" &&  <li className='nav-item'>
+            <Link
+                to={'/messages'}
+                className='nav-links'
+                onClick={closeMobileMenu}
+              >
+                Messages
+              </Link>
+              </li>}
             {isAuthenticated && user['type']!="Admin" &&  <li className='nav-item'>
               <Link
                 to='/commonInjuries'

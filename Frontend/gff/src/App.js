@@ -22,6 +22,8 @@ import CommonInjuries from './components/pages/CommonInjuries';
 import CoachProfile from './components/pages/CoachProfile';
 import UploadVideo from './components/forms/UploadVideo';
 import MyWorkouts from './components/pages/MyWorkouts';
+import Messages from './components/pages/Messages';
+import MessageForm from './components/forms/MessageForm';
 
 function App() {
   return (
@@ -48,6 +50,8 @@ function App() {
             <Route path='/coach/profile' element={<CoachProfile />}/>
             <Route path='/coach/uploadVideo' element={<UploadVideo />}/>
             <Route path='/sportsman/myWorkouts' element={<MyWorkouts/>}/>
+            <Route path='/messages' element={<Messages/>}/>
+            <Route path='/newMessage' element={<MessageForm/>}/>
         </Routes>
       </Router>
       </UserProvider>
