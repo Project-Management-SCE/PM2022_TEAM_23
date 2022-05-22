@@ -26,6 +26,7 @@ import Messages from './components/pages/Messages';
 import MessageForm from './components/forms/MessageForm';
 import GeneralForum from './components/pages/GeneralForum';
 import AdminPost from './components/forms/AdminPost';
+import CoachForumPost from './components/forms/CoachForumPost';
 
 function App() {
   return (
@@ -56,6 +57,7 @@ function App() {
             <Route path='/newMessage' element={<MessageForm/>}/>
             <Route path='/generalForum' element={<GeneralForum/>}/>
             <Route path='/newPost' element={<AdminPost/>}/>
+            <Route path='/newPost_' element={<CoachForumPost/>}/>
         </Routes>
       </Router>
       </UserProvider>

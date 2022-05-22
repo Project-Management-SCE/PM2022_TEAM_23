@@ -100,7 +100,6 @@ public class CoachController {
 
     @GetMapping("/updateRating/{rating}/{userName}")
     public Optional<Coach> UpdateRating(@PathVariable int rating,@PathVariable String userName){
-        System.out.print(rating);
         Optional<Coach> coach = coachRepository.findById(userName);
         if (coach.isPresent())
         {
