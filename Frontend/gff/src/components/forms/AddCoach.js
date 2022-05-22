@@ -2,6 +2,7 @@ import React from "react";
 import './Form.css';
 import axios from "axios";
 import UserContext from "../../UserContext";
+import { Navigate } from "react-router-dom";
 
 class AddCoach extends React.Component {
 
@@ -25,6 +26,7 @@ class AddCoach extends React.Component {
             licenseNumber: '',
             workPlaceId: '',
             sportKind: '',
+            added:false
         }
     }
 
@@ -62,7 +64,8 @@ class AddCoach extends React.Component {
                                 phoneNumber: '',
                                 licenseNumber: '',
                                 workPlaceId: '',
-                                sportKind: ''
+                                sportKind: '',
+                                added:true
                             })
             });
         }
@@ -72,6 +75,7 @@ class AddCoach extends React.Component {
         const {user,isAuthenticated,LogIn,LogOut} = this.context;
         return (
             <div className='form-content'>
+                {this.state.added && (<Navigate to="/users" replace={true} />)}
             <form className="form" onSubmit={(e)=>this.submit(e,this.state.userName)}>
                 <h1>
                    Hey {user.userName}! add a new coach to the system by filling out the information below.

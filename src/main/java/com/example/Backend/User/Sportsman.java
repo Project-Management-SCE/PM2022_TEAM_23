@@ -2,10 +2,13 @@ package com.example.Backend.User;
 import com.example.Backend.Sports.Sports;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
+
 @Document
 public class Sportsman extends User {
     private String level;
     private String sportName;
+    private ArrayList<String> doneWorkouts;
 
     public Sportsman(String userName,
                      String email,
@@ -24,6 +27,7 @@ public class Sportsman extends User {
         super.setSportsman();
         this.level = level;
         this.sportName = sportName;
+        doneWorkouts = new ArrayList<String>();
     }
 
     public String getLevel() {
@@ -37,4 +41,12 @@ public class Sportsman extends User {
     public String getSport() {
         return sportName;
     }
+
+    public void setSport(String sportName) {
+        this.sportName = sportName;
+    }
+
+    public void setDoneWorkout(String url) { this.doneWorkouts.add(url); }
+
+    public  ArrayList<String> getDoneWorkouts() { return this.doneWorkouts; }
 }

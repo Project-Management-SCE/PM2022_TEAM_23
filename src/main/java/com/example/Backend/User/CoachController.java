@@ -1,6 +1,5 @@
 package com.example.Backend.User;
 
-import netscape.javascript.JSObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
@@ -47,27 +46,27 @@ public class CoachController {
         return coach;
     }
 
-    @PostMapping("/uploadBeginnerWeeklySessions")
-    public Optional<Coach> saveBeginnerWeeklySession(@RequestBody String userName,@RequestBody String url,@RequestBody String description) throws UnsupportedEncodingException
+    @PostMapping("/uploadBeginnerWeeklySessions/{userName}/{description}")
+    public Optional<Coach> saveBeginnerWeeklySession(@RequestBody String url,@PathVariable String userName,@PathVariable String description) throws UnsupportedEncodingException
     {
         String urlAfterDecoding = java.net.URLDecoder.decode(url, StandardCharsets.UTF_8.name());
         Optional<Coach> coach = coachRepository.findById(userName);
         if (coach.isPresent())
         {
-            coach.get().setProfessionalWeeklySession(urlAfterDecoding,description);
+            coach.get().setBeginnerWeeklySession(urlAfterDecoding,description);
             coachRepository.save(coach.get());
         }
         return coach;
     }
 
-    @PostMapping("/uploadSemiProWeeklySessions")
-    public Optional<Coach> saveSemiProWeeklySession(@RequestBody String userName,@RequestBody String url,@RequestBody String description) throws UnsupportedEncodingException
+    @PostMapping("/uploadSemiProWeeklySessions/{userName}/{description}")
+    public Optional<Coach> saveSemiProWeeklySession(@RequestBody String url,@PathVariable String userName,@PathVariable String description) throws UnsupportedEncodingException
     {
         String urlAfterDecoding = java.net.URLDecoder.decode(url, StandardCharsets.UTF_8.name());
         Optional<Coach> coach = coachRepository.findById(userName);
         if (coach.isPresent())
         {
-            coach.get().setProfessionalWeeklySession(urlAfterDecoding,description);
+            coach.get().setSemiproWeeklySession(urlAfterDecoding,description);
             coachRepository.save(coach.get());
         }
         return coach;
@@ -77,11 +76,35 @@ public class CoachController {
     public Optional<Coach> saveProfessionalWeeklySession(@RequestBody String url,@PathVariable String userName,@PathVariable String description) throws UnsupportedEncodingException
     {
         String urlAfterDecoding = java.net.URLDecoder.decode(url, StandardCharsets.UTF_8.name());
-        System.out.println(userName+urlAfterDecoding+description);
         Optional<Coach> coach = coachRepository.findById(userName);
         if (coach.isPresent())
         {
             coach.get().setProfessionalWeeklySession(urlAfterDecoding,description);
+            coachRepository.save(coach.get());
+        }
+        return coach;
+    }
+
+    @PostMapping("/uploadWeeklyMotivation/{userName}")
+    public Optional<Coach> saveWeeklyMotivation(@RequestBody String url,@PathVariable String userName) throws UnsupportedEncodingException
+    {
+        String urlAfterDecoding = java.net.URLDecoder.decode(url, StandardCharsets.UTF_8.name());
+        Optional<Coach> coach = coachRepository.findById(userName);
+        if (coach.isPresent())
+        {
+            coach.get().setWeeklyMotivation(urlAfterDecoding);
+            coachRepository.save(coach.get());
+        }
+        return coach;
+    }
+
+    @GetMapping("/updateRating/{rating}/{userName}")
+    public Optional<Coach> UpdateRating(@PathVariable int rating,@PathVariable String userName){
+        System.out.print(rating);
+        Optional<Coach> coach = coachRepository.findById(userName);
+        if (coach.isPresent())
+        {
+            coach.get().setRating(rating);
             coachRepository.save(coach.get());
         }
         return coach;
