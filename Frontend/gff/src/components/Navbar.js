@@ -130,13 +130,13 @@ function Navbar() {
                 General Forum
               </Link>
               </li>}
-              {isAuthenticated && user['type']==="Admin" &&  <li className='nav-item'>
+              {isAuthenticated &&  <li className='nav-item'>
               <Link
-                to='/bestSportsmans'
+                to='/outstandings'
                 className='nav-links'
                 onClick={closeMobileMenu}
               >
-                Best Athletes
+                Outstandings
               </Link>
             </li>}
             {isAuthenticated && user['type']!="Admin" &&  <li className='nav-item'>

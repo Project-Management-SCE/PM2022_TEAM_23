@@ -77,7 +77,7 @@ class Messages extends React.Component {
                 <h1>Sent</h1>
                 <br/>
                 {this.state.messages_fromMe.map(message => (
-                <>
+                !message.to.includes("Forum")  && <>
                     <u>To: {message.to} </u>
                     <br/>
                     <br/>

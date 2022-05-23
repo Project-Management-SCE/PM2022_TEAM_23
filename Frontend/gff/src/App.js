@@ -27,7 +27,7 @@ import MessageForm from './components/forms/MessageForm';
 import GeneralForum from './components/pages/GeneralForum';
 import AdminPost from './components/forms/AdminPost';
 import CoachForumPost from './components/forms/CoachForumPost';
-import BestSportsmans from './components/pages/BestSportsmans';
+import Outstandings from './components/pages/Outstandings';
 
 function App() {
   return (
@@ -59,7 +59,7 @@ function App() {
             <Route path='/generalForum' element={<GeneralForum/>}/>
             <Route path='/newPost' element={<AdminPost/>}/>
             <Route path='/newPost_' element={<CoachForumPost/>}/>
-            <Route path='/bestSportsmans' element={<BestSportsmans/>}/>
+            <Route path='/outstandings' element={<Outstandings/>}/>
         </Routes>
       </Router>
       </UserProvider>
