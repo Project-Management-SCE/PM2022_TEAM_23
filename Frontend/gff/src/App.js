@@ -24,6 +24,10 @@ import UploadVideo from './components/forms/UploadVideo';
 import MyWorkouts from './components/pages/MyWorkouts';
 import Messages from './components/pages/Messages';
 import MessageForm from './components/forms/MessageForm';
+import GeneralForum from './components/pages/GeneralForum';
+import AdminPost from './components/forms/AdminPost';
+import CoachForumPost from './components/forms/CoachForumPost';
+import BestSportsmans from './components/pages/BestSportsmans';
 
 function App() {
   return (
@@ -52,6 +56,10 @@ function App() {
             <Route path='/sportsman/myWorkouts' element={<MyWorkouts/>}/>
             <Route path='/messages' element={<Messages/>}/>
             <Route path='/newMessage' element={<MessageForm/>}/>
+            <Route path='/generalForum' element={<GeneralForum/>}/>
+            <Route path='/newPost' element={<AdminPost/>}/>
+            <Route path='/newPost_' element={<CoachForumPost/>}/>
+            <Route path='/bestSportsmans' element={<BestSportsmans/>}/>
         </Routes>
       </Router>
       </UserProvider>

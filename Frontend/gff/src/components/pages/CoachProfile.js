@@ -13,7 +13,8 @@ class CoachProfile extends React.Component {
         {
             Coaches: [],
             coachUserName:'',
-            saved:false
+            saved:false,
+            messages_toCoachForum:[],
         }
     }
 
@@ -22,9 +23,10 @@ class CoachProfile extends React.Component {
         axios.get("http://localhost:8080/coach/getCoach")
         .then((res) => {
             res.data.map(coach => (
-                coach.sportKind===user.sport?this.setState({
+                user.type==="Sportsman" && coach.sportKind===user.sport?this.setState({
                     Coaches:res.data,
-                    coachUserName:coach.userName
+                    coachUserName:coach.userName,
+                    to:coach.userName + " Forum"
                 }):this.setState({
                     Coaches:res.data,
                 })
@@ -47,8 +49,27 @@ class CoachProfile extends React.Component {
         await axios.get(`http://localhost:8080/coach/updateRating/${rating}/${this.state.coachUserName}`);
     }
 
+    async fetchMessages_toCoachForum(fname)
+    {
+        const {user, isAuthenticated, LogIn, LogOut} = this.context;
+        if(user.type==="Sportsman")
+        {
+            await axios.get(`http://localhost:8080/messages/getReceiver/${fname}`)
+            .then((res) => {this.setState({
+                messages_toCoachForum:res.data
+            })})
+        }
+        if(user.type==="Coach")
+        {
+            await axios.get(`http://localhost:8080/messages/getReceiver/${fname}`)
+            .then((res) => {this.setState({
+                messages_toCoachForum:res.data
+            })})
+        }
+    }
+
     componentDidMount(){
-        this.FetchCoaches();
+        this.FetchCoaches()
     }
 
     render() {
@@ -57,7 +78,7 @@ class CoachProfile extends React.Component {
         this.setRating(newRating)
     };
     return (
-        user['type']==="Coach" && 
+        user['type']==="Coach" &&  this.fetchMessages_toCoachForum(user.userName + " Forum") &&
         <div className='coach-private' align="center">
             <br/>
             <h1>{user.firstName}&thinsp;{user.lastName}</h1>
@@ -106,10 +127,27 @@ class CoachProfile extends React.Component {
                 </table>
                 </div>
                 <div align="center"><Link className='uploadlink' to="../coach/uploadVideo" >Upload Weekly Video</Link></div>
+                <div className='coach-forum' align="center">
+                    <br/>
+                    <h1>Forum</h1>
+                    <Link to='/newPost_'>Post something...</Link>
+                    <br/>
+                    <br/>
+                    <br/>
+                    {this.state.messages_toCoachForum.map(message => (
+                        <>
+                        <u>From: {message.from}</u>
+                        <br/>
+                        <br/>
+                        {message.content}
+                        <br />
+                        <br/>
+                    </>))}
+                </div>
             </div>
         </div>
         ||
-        user['type']==="Sportsman" && 
+        user['type']==="Sportsman" && this.fetchMessages_toCoachForum(this.state.coachUserName + " Forum") &&
         <div className='coach-private' align="center">
             <br/>
             {this.state.Coaches.map(coach => (
@@ -147,8 +185,8 @@ class CoachProfile extends React.Component {
                     {user.level === "Beginner" && 
                     <>
                     <tr>
-                        <th>Hello {user.firstName}&thinsp;{user.lastName},&thinsp;Here Is Your Weekly Session!</th>
-                        <th><ReactPlayer height='600px' width='900px' controls url={coach['beginnerWeeklySession'][0]}/> Please Click <button className='doneButton' onClick={() => this.SaveWorkout(coach['beginnerWeeklySession'][0])}>Here</button> When You're Done</th>
+                        <th>Hello {user.firstName}&thinsp;{user.lastName},&thinsp;Here Is Your Weekly Session! Please Click <button className='doneButton' onClick={() => this.SaveWorkout(coach['beginnerWeeklySession'][0])}>Here</button> When You're Done</th>
+                        <th><ReactPlayer height='600px' width='900px' controls url={coach['beginnerWeeklySession'][0]}/></th>
                         <th><p><u>Description:</u>&thinsp;{coach['beginnerWeeklySession'][1]}</p></th>
                     </tr>
                     </>}
@@ -181,7 +219,24 @@ class CoachProfile extends React.Component {
                     fullIcon={<i className="fa fa-star"></i>}
                     activeColor="#ffd700"
                 />
-                    </div> 
+                    </div>
+                    <div className='coach-forum' align="center">
+                    <br/>
+                    <h1>Forum</h1>
+                    <Link to='/newPost_'>Post something...</Link>
+                    <br/>
+                    <br/>
+                    <br/>
+                    {this.state.messages_toCoachForum.map(message => (
+                        <>
+                        <u>From: {message.from}</u>
+                        <br/>
+                        <br/>
+                        {message.content}
+                        <br />
+                        <br/>
+                    </>))}
+                </div> 
                 </div>
             </div>
             </>))}

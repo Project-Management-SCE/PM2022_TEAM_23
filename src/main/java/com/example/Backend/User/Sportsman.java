@@ -9,6 +9,7 @@ public class Sportsman extends User {
     private String level;
     private String sportName;
     private ArrayList<String> doneWorkouts;
+    private int numOfdoneWorkouts;
 
     public Sportsman(String userName,
                      String email,
@@ -28,6 +29,7 @@ public class Sportsman extends User {
         this.level = level;
         this.sportName = sportName;
         doneWorkouts = new ArrayList<String>();
+        numOfdoneWorkouts = 0;
     }
 
     public String getLevel() {
@@ -46,7 +48,11 @@ public class Sportsman extends User {
         this.sportName = sportName;
     }
 
-    public void setDoneWorkout(String url) { this.doneWorkouts.add(url); }
+    public void setDoneWorkout(String url)
+    {
+        this.numOfdoneWorkouts++;
+        this.doneWorkouts.add(url);
+    }
 
     public  ArrayList<String> getDoneWorkouts() { return this.doneWorkouts; }
 }

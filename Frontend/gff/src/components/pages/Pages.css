@@ -197,7 +197,7 @@
 
 .rating{
   display: flex;
-  margin-left: 40%;
+  margin-left: 44%;
 }
 
 .messages-container{
@@ -217,4 +217,23 @@
 .messages-container2{
   margin-top: 5%;
   margin-left: 10%;
+}
+
+.forum-container{
+  display: flex;
+}
+
+.newpost{
+  margin-top: 5%;
+  margin-left: 15%;
+}
+
+.forum-container1{
+  margin-top: 5%;
+  margin-left: 25%;
+}
+
+.forum-container2{
+  margin-top: 5%;
+  margin-left: 43%;
 }
