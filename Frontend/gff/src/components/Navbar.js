@@ -121,6 +121,24 @@ function Navbar() {
                 Messages
               </Link>
               </li>}
+            {isAuthenticated && <li className='nav-item'>
+            <Link
+                to={'/generalForum'}
+                className='nav-links'
+                onClick={closeMobileMenu}
+              >
+                General Forum
+              </Link>
+              </li>}
+              {isAuthenticated &&  <li className='nav-item'>
+              <Link
+                to='/outstandings'
+                className='nav-links'
+                onClick={closeMobileMenu}
+              >
+                Outstandings
+              </Link>
+            </li>}
             {isAuthenticated && user['type']!="Admin" &&  <li className='nav-item'>
               <Link
                 to='/commonInjuries'

@@ -31,11 +31,17 @@ class SportsmanProfile extends React.Component {
     }
 
     async getSports() {
+        const {user, isAuthenticated, LogIn, LogOut} = this.context;
         await axios.get("http://localhost:8080/sports/getSports")
         .then(res => {
+            user.sport != res.data[0].name?
             this.setState({
                 Sports:res.data,
                 sportName:res.data[0].name
+            }):
+            this.setState({
+                Sports:res.data,
+                sportName:res.data[1].name
             })
         })
     }

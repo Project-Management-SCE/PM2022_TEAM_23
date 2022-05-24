@@ -1,7 +1,4 @@
-import axios from 'axios';
 import React from 'react'
-import ReactStars from "react-rating-stars-component";
-import { Link } from 'react-router-dom';
 import ReactPlayer from 'react-player';
 import UserContext from '../../UserContext';
 import './Pages.css';

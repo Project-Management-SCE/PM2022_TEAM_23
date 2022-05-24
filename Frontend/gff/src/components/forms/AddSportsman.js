@@ -34,7 +34,8 @@ class AddSportsman extends React.Component {
         await axios.get("http://localhost:8080/sports/getSports")
         .then(res => {
             this.setState({
-                Sports:res.data
+                Sports:res.data,
+                sportName:res.data[0].name
             })
         })
     }
