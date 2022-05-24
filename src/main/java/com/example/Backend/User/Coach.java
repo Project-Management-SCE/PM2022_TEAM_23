@@ -2,6 +2,8 @@ package com.example.Backend.User;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
+
 @Document
 public class Coach extends User{
     private String licenseNumber;
@@ -10,7 +12,10 @@ public class Coach extends User{
     private String[] beginnerWeeklySession;
     private String[] semiproWeeklySession;
     private String[] professionalWeeklySession;
+    private String weeklyMotivation;
     private String[][] commonInjuries;
+    private ArrayList<Integer> ratings;
+    private int rating;
 
     public Coach(String userName,
                  String email,
@@ -49,6 +54,9 @@ public class Coach extends User{
         this.professionalWeeklySession = new String[2];
         this.professionalWeeklySession[0] = "url?";
         this.professionalWeeklySession[1] = "description?";
+        this.weeklyMotivation = "url?";
+        ratings = new ArrayList<Integer>();
+        rating = 0;
     }
 
     public String getLicenseNumber() {
@@ -135,4 +143,27 @@ public class Coach extends User{
         this.professionalWeeklySession[0] = url;
         this.professionalWeeklySession[1] = description;
     }
+
+    public String getWeeklyMotivation() {
+        return weeklyMotivation;
+    }
+
+    public void setWeeklyMotivation(String url) {
+        this.weeklyMotivation = url;
+    }
+
+    public int getRating() {
+        return this.rating;
+    }
+
+    public void setRating(int rating) {
+        this.ratings.add(rating);
+        int sum = 0;
+        for (int i = 0;i<ratings.size();i++)
+        {
+            sum += ratings.get(i);
+        }
+        this.rating = sum/ratings.size();
+    }
+
 }

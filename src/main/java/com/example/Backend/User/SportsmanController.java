@@ -1,8 +1,11 @@
 package com.example.Backend.User;
 
+import org.omg.CORBA.PUBLIC_MEMBER;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,6 +27,52 @@ public class SportsmanController {
             if (sportsman.get().getPassword() == password)
             {
                 return sportsman;
+            }
+        }
+        return sportsman;
+    }
+
+    @GetMapping("/updateWeight/{userName}/{weight}")
+    public Optional<Sportsman> changeWeight(@PathVariable String userName,@PathVariable float weight)
+    {
+        Optional<Sportsman> sportsman = sportsmanRepository.findById(userName);
+        if (sportsman.isPresent())
+        {
+            sportsman.get().setWeight(weight);
+            sportsmanRepository.save(sportsman.get());
+        }
+        return sportsman;
+    }
+
+    @GetMapping("/updateSport/{userName}/{sportName}")
+    public Optional<Sportsman> changeSport(@PathVariable String userName,@PathVariable String sportName)
+    {
+        Optional<Sportsman> sportsman = sportsmanRepository.findById(userName);
+        if (sportsman.isPresent())
+        {
+            sportsman.get().setSport(sportName);
+            sportsmanRepository.save(sportsman.get());
+        }
+        return sportsman;
+    }
+
+    @PostMapping("/saveWorkout/{userName}")
+    public Optional<Sportsman> saveWorkout(@RequestBody String url,@PathVariable String userName) throws UnsupportedEncodingException
+    {
+        int flag = 0;
+        String urlAfterDecoding = java.net.URLDecoder.decode(url, StandardCharsets.UTF_8.name());
+        Optional<Sportsman> sportsman = sportsmanRepository.findById(userName);
+        if (sportsman.isPresent())
+        {
+            for (int i = 0;i<sportsman.get().getDoneWorkouts().size();i++)
+            {
+                if(sportsman.get().getDoneWorkouts().get(i).contentEquals(urlAfterDecoding))
+                    flag = 1;
+            }
+            if(flag == 0)
+            {
+                sportsman.get().setDoneWorkout(urlAfterDecoding);
+                sportsmanRepository.save(sportsman.get());
             }
         }
         return sportsman;

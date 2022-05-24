@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React from 'react'
-import { Link } from 'react-router-dom';
+import ReactStars from "react-rating-stars-component";
+import { Link, Navigate } from 'react-router-dom';
 import ReactPlayer from 'react-player';
 import UserContext from '../../UserContext';
 import './Pages.css';
@@ -11,16 +12,39 @@ class CoachProfile extends React.Component {
         this.state = 
         {
             Coaches: [],
+            coachUserName:'',
+            saved:false
         }
     }
 
     FetchCoaches() {
+        const {user, isAuthenticated, LogIn, LogOut} = this.context;
         axios.get("http://localhost:8080/coach/getCoach")
         .then((res) => {
-            this.setState({
-                Coaches: res.data
-            })
+            res.data.map(coach => (
+                coach.sportKind===user.sport?this.setState({
+                    Coaches:res.data,
+                    coachUserName:coach.userName
+                }):this.setState({
+                    Coaches:res.data,
+                })
+            ))
         });
+    }
+
+    async SaveWorkout(url) {
+        const {user, isAuthenticated, LogIn, LogOut} = this.context;
+        await axios.post(`http://localhost:8080/sportsman/saveWorkout/${user.userName}`,url)
+                .then((res) => {
+                    LogIn(res.data)
+                    this.setState({
+                        saved:true
+                    })
+                })
+    }
+
+    async setRating(rating) {
+        await axios.get(`http://localhost:8080/coach/updateRating/${rating}/${this.state.coachUserName}`);
     }
 
     componentDidMount(){
@@ -29,6 +53,9 @@ class CoachProfile extends React.Component {
 
     render() {
     const {user, isAuthenticated, LogIn, LogOut} = this.context;
+    const ratingChanged = (newRating) => {
+        this.setRating(newRating)
+    };
     return (
         user['type']==="Coach" && 
         <div className='coach-private' align="center">
@@ -52,6 +79,14 @@ class CoachProfile extends React.Component {
                 <div className='coach-private-videos' align="center">
                     <h1><u>My Uploads:</u></h1>
                     <br/>
+                {user.weeklyMotivation!="url?" &&
+                 <div className='motivation-vid'>
+                    <p>Weekly Motivation:</p>
+                    <br/>
+                    <ReactPlayer height='600px' width='900px' controls url={user.weeklyMotivation}/>
+                    <br/>
+                    <br/>
+                </div>}
                 <table border="1">
                     <tr>
                         <th>Beginner Weekly Session</th>
@@ -83,6 +118,7 @@ class CoachProfile extends React.Component {
             <h1>Coach {coach['firstName']}&thinsp;{coach['lastName']}</h1>
             <br/>
             <div className='coach-private-container' align="center">
+                {this.state.saved && (<Navigate to="/sportsman/myWorkouts" replace={true} />)}
                 <div className='coach-private-details1' align="center">
                 <b>User Name:</b>&thinsp;&thinsp;<p>{coach['userName']}</p>&emsp;
                 <b>Email:</b>&thinsp;&thinsp;<p>{coach['email']}</p>&emsp;
@@ -96,6 +132,14 @@ class CoachProfile extends React.Component {
                 <b>Work Place ID:</b>&thinsp;&thinsp;<p>{coach['workPlaceId']}</p></div>
                 <br/>
                 <br/>
+                {coach['weeklyMotivation']!="url?" &&
+                 <div className='motivation-vid'>
+                    <p>Weekly Motivation:</p>
+                    <br/>
+                    <ReactPlayer height='600px' width='900px' controls url={coach['weeklyMotivation']}/>
+                    <br/>
+                    <br/>
+                </div>}
                 <div className='coach-private-videos' align="center">
                     <h1><u>My {user.level} Weekly Session:</u></h1>
                     <br/>
@@ -104,14 +148,14 @@ class CoachProfile extends React.Component {
                     <>
                     <tr>
                         <th>Hello {user.firstName}&thinsp;{user.lastName},&thinsp;Here Is Your Weekly Session!</th>
-                        <th><ReactPlayer height='600px' width='900px' controls url={coach['beginnerWeeklySession'][0]}/> Please Click <button className='doneButton'>Here</button> When You're Done</th>
+                        <th><ReactPlayer height='600px' width='900px' controls url={coach['beginnerWeeklySession'][0]}/> Please Click <button className='doneButton' onClick={() => this.SaveWorkout(coach['beginnerWeeklySession'][0])}>Here</button> When You're Done</th>
                         <th><p><u>Description:</u>&thinsp;{coach['beginnerWeeklySession'][1]}</p></th>
                     </tr>
                     </>}
                     {user.level === "Semi-Pro" && 
                     <>
                     <tr>
-                        <th>Hello {user.firstName}&thinsp;{user.lastName},&thinsp;Here Is Your Weekly Session! Please Click <button className='doneButton'>Here</button> When You're Done</th>
+                        <th>Hello {user.firstName}&thinsp;{user.lastName},&thinsp;Here Is Your Weekly Session! Please Click <button className='doneButton' onClick={() => this.SaveWorkout(coach['semiproWeeklySession'][0])}>Here</button> When You're Done</th>
                         <th><ReactPlayer height='600px' width='900px' controls url={coach['semiproWeeklySession'][0]}/></th>
                         <th><p><u>Description:</u>&thinsp;{coach['semiproWeeklySession'][1]}</p></th>
                     </tr>
@@ -119,12 +163,25 @@ class CoachProfile extends React.Component {
                     {user.level === "Professional" && 
                     <>
                     <tr>
-                        <th>Hello {user.firstName}&thinsp;{user.lastName},&thinsp;Here Is Your Weekly Session! Please Click <button className='doneButton'>Here</button> When You're Done</th>
+                        <th>Hello {user.firstName}&thinsp;{user.lastName},&thinsp;Here Is Your Weekly Session! Please Click <button className='doneButton' onClick={() => this.SaveWorkout(coach['professionalWeeklySession'][0])}>Here</button> When You're Done</th>
                         <th><ReactPlayer height='600px' width='900px' controls url={coach['professionalWeeklySession'][0]}/></th>
                         <th><p><u>Description:</u>&thinsp;{coach['professionalWeeklySession'][1]}</p></th>
                     </tr>
                     </>}
                 </table>
+                <h1>Rate Your Coach</h1>
+                <div className='rating'>
+                <ReactStars
+                    count={5}
+                    onChange={ratingChanged}
+                    size={60}
+                    isHalf={true}
+                    emptyIcon={<i className="far fa-star"></i>}
+                    halfIcon={<i className="fa fa-star-half-alt"></i>}
+                    fullIcon={<i className="fa fa-star"></i>}
+                    activeColor="#ffd700"
+                />
+                    </div> 
                 </div>
             </div>
             </>))}

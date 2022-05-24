@@ -1,6 +1,7 @@
 import React from "react";
 import './Form.css';
 import axios from "axios";
+import { Navigate } from "react-router-dom";
 
 class CoachForm extends React.Component {
 
@@ -24,6 +25,7 @@ class CoachForm extends React.Component {
             licenseNumber: '',
             workPlaceId: '',
             sportKind: '',
+            signed:false
         }
     }
 
@@ -61,7 +63,8 @@ class CoachForm extends React.Component {
                                 phoneNumber: '',
                                 licenseNumber: '',
                                 workPlaceId: '',
-                                sportKind: ''
+                                sportKind: '',
+                                signed:true
                             })
             });
         }
@@ -70,6 +73,7 @@ class CoachForm extends React.Component {
     render(){
         return (
             <div className='form-content'>
+                {this.state.signed && (<Navigate to="/" replace={true} />)}
             <form className="form" onSubmit={(e)=>this.submit(e,this.state.userName)}>
                 <h1>
                    Hey Coach! get started with us today! Create your

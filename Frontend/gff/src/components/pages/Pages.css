@@ -188,3 +188,33 @@
   height: 40px;
   width: 60px;
 }
+
+.motivation-vid p{
+  font-size: 2rem;
+  font-weight: 700;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.rating{
+  display: flex;
+  margin-left: 40%;
+}
+
+.messages-container{
+  display: flex;
+}
+
+.newMessage{
+  margin-top: 5%;
+  margin-left: 15%;
+}
+
+.messages-container1{
+  margin-top: 5%;
+  margin-left: 20%;
+}
+
+.messages-container2{
+  margin-top: 5%;
+  margin-left: 10%;
+}
