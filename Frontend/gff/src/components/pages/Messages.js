@@ -1,6 +1,5 @@
 import axios from 'axios';
 import React from 'react'
-import ReactPlayer from 'react-player';
 import { Link } from 'react-router-dom';
 import UserContext from '../../UserContext';
 import './Pages.css';
@@ -15,16 +14,22 @@ class Messages extends React.Component {
         }
     }
 
-    refreshPage() {
-        window.location.reload(false);
-    }
-
     async fetchMessages_toMe()
     {
         const {user, isAuthenticated, LogIn, LogOut} = this.context;
         await axios.get(`http://localhost:8080/messages/getReceiver/${user.userName}`)
         .then((res) => {this.setState({
             messages_toMe:res.data
+        })})
+    }
+
+    async fetchMessages_toAdmin()
+    {
+        const {user, isAuthenticated, LogIn, LogOut} = this.context;
+        const admin = "Admin"
+        await axios.get(`http://localhost:8080/messages/getReceiver/${admin}`)
+        .then((res) => {this.setState({
+            messages_toMe:this.state.messages_toMe.concat(res.data)
         })})
     }
 
@@ -40,14 +45,25 @@ class Messages extends React.Component {
     async deleteMessage()
     {
         const {user, isAuthenticated, LogIn, LogOut} = this.context;
+        const admin = "Admin"
         await axios.delete(`http://localhost:8080/messages/deleteMessage/${user.userName}`).
         then(this.componentDidMount())
+        if(user.type==="Admin")
+        {
+            await axios.delete(`http://localhost:8080/messages/deleteMessage/${admin}`).
+            then(this.componentDidMount())
+        }
     }
 
     componentDidMount()
     {
+        const {user, isAuthenticated, LogIn, LogOut} = this.context;
         this.fetchMessages_toMe();
         this.fetchMessages_fromMe();
+        if(user.type==="Admin")
+        {
+            this.fetchMessages_toAdmin();
+        }
     }
 
     render() {

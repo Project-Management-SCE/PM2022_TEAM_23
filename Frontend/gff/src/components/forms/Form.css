@@ -259,3 +259,39 @@
   border: none;
 }
 
+.reportToAdmin-form-content{
+  background-color: black;
+  margin: 0px auto;
+  width: 100%;
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.2);
+  position:absolute;
+  border-radius: 10px;
+  height: 1300px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.reportToAdmin{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-input-content1{
+  display:block;
+  padding-left: 10px;
+  margin-top: 10px;
+  outline: none;
+  border-radius: 2px;
+  height: 80px;
+  width: 100%;
+  border: none;
+}
+
