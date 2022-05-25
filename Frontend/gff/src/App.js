@@ -28,6 +28,7 @@ import GeneralForum from './components/pages/GeneralForum';
 import AdminPost from './components/forms/AdminPost';
 import CoachForumPost from './components/forms/CoachForumPost';
 import Outstandings from './components/pages/Outstandings';
+import ReportToAdmin from './components/forms/ReportToAdmin';
 
 function App() {
   return (
@@ -60,6 +61,7 @@ function App() {
             <Route path='/newPost' element={<AdminPost/>}/>
             <Route path='/newPost_' element={<CoachForumPost/>}/>
             <Route path='/outstandings' element={<Outstandings/>}/>
+            <Route path='/reportToAdmin' element={<ReportToAdmin/>}/>
         </Routes>
       </Router>
       </UserProvider>
