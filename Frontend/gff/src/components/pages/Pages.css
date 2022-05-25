@@ -237,3 +237,21 @@
   margin-top: 5%;
   margin-left: 43%;
 }
+
+.upgrade{
+  text-align: center;
+  background-color: green;
+  color: black;
+  font-size: x-large;
+  height: 40px;
+  width: 100px;
+}
+
+.downgrade{
+  text-align: center;
+  background-color: red;
+  color: black;
+  font-size: x-large;
+  height: 40px;
+  width: 130px;
+}

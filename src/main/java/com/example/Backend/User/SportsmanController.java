@@ -56,6 +56,18 @@ public class SportsmanController {
         return sportsman;
     }
 
+    @GetMapping("/updateLevel/{userName}/{level}")
+    public Optional<Sportsman> updateLevel(@PathVariable String userName,@PathVariable String level)
+    {
+        Optional<Sportsman> sportsman = sportsmanRepository.findById(userName);
+        if (sportsman.isPresent())
+        {
+            sportsman.get().setLevel(level);
+            sportsmanRepository.save(sportsman.get());
+        }
+        return sportsman;
+    }
+
     @PostMapping("/saveWorkout/{userName}")
     public Optional<Sportsman> saveWorkout(@RequestBody String url,@PathVariable String userName) throws UnsupportedEncodingException
     {

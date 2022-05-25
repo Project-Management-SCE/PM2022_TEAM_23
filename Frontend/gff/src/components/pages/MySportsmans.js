@@ -10,6 +10,7 @@ class MySportsmans extends React.Component {
         this.state = 
         {
             Sportsman: [],
+            updated:false
         }
     }
 
@@ -22,7 +23,42 @@ class MySportsmans extends React.Component {
         });
     }
 
+    async upgradeSportsman(sportsman)
+    {
+        const {user, isAuthenticated, LogIn, LogOut} = this.context;
+        if(sportsman.level==='Beginner')
+        {
+            const level = "Semi-Pro"
+            await axios.get(`http://localhost:8080/sportsman/updateLevel/${sportsman.userName}/${level}`)
+        }
+        else if(sportsman.level==='Semi-Pro')
+        {
+            const level = "Professional"
+            await axios.get(`http://localhost:8080/sportsman/updateLevel/${sportsman.userName}/${level}`)
+        }
+    }
+
+    async downgradeSportsman(sportsman)
+    {
+        const {user, isAuthenticated, LogIn, LogOut} = this.context;
+        if(sportsman.level==='Professional')
+        {
+            const level = "Semi-Pro"
+            await axios.get(`http://localhost:8080/sportsman/updateLevel/${sportsman.userName}/${level}`)
+        }
+        else if(sportsman.level==='Semi-Pro')
+        {
+            const level = "Beginner"
+            await axios.get(`http://localhost:8080/sportsman/updateLevel/${sportsman.userName}/${level}`)
+        }
+    }
+
     componentDidMount(){
+        this.FetchSportsmans();
+    }
+
+    componentDidUpdate()
+    {
         this.FetchSportsmans();
     }
 
@@ -42,7 +78,11 @@ class MySportsmans extends React.Component {
                     <div>Height: {sportsman['height']}</div>
                     <div>Weight: {sportsman['weight']}</div>
                     <div>Phone Number: {sportsman['phoneNumber']}</div>
-                    <div>Level: {sportsman['level']}</div>
+                    <div>Level: {sportsman['level']}
+                    <br/>
+                    <button className='upgrade' onClick={() => this.upgradeSportsman(sportsman)}>Upgrade</button>
+                    <button className='downgrade' onClick={() => this.downgradeSportsman(sportsman)}>Downgrade</button>
+                    </div>
                     <br/>
                     <br/>
                     </>
