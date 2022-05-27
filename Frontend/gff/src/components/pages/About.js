@@ -17,6 +17,11 @@ function About() {
             <p>פלטפורמת אימון עם אנשי מקצוע מהרמה הגבוהה ביותר אשר יקדישו את מיטב כוחם וזמנם</p>
             <p>.עבור מתאמנים חדשים וותיקים שרוצים לחזור לכושר ולשלב זאת יחד בלו"ז המשימות השבועי</p>
             <p>Go For Fit with us ...אז קדימה למה אתם מחכים</p>
+            <img className='tomer' src={require('./OurTeam/Tomer.jpg')} alt="" />
+            <img className='eli' src={require('./OurTeam/Eli.jpg')} alt="" />
+            <img className='matan' src={require('./OurTeam/Matan.jpg')} alt="" />
+            <img className='yuval' src={require('./OurTeam/Yuval.jpg')} alt="" />
+            <p>יובל אפרת&emsp;&emsp;&emsp;&emsp;&emsp;מתן בן ישי&emsp;&emsp;&emsp;&emsp;&emsp;אלי אמוייב&emsp;&emsp;&emsp;&emsp;&emsp;תומר בן שימול&emsp;&emsp;&emsp;&emsp;</p>
         </div>
     </div>
   )

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="iw"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SportsController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Backend</a> &gt; <a href="index.source.html" class="el_package">com.example.Backend.Sports</a> &gt; <span class="el_source">SportsController.java</span></div><h1>SportsController.java</h1><pre class="source lang-java linenums">package com.example.Backend.Sports;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Optional;
+
+@RestController
+@RequestMapping(&quot;sports/&quot;)
+@CrossOrigin
+<span class="fc" id="L12">public class SportsController {</span>
+    @Autowired
+    private SportsRepository sportsRepository;
+
+    @GetMapping(&quot;/getSports&quot;)
+<span class="nc" id="L17">    public List&lt;Sports&gt; getSports() {return sportsRepository.findAll();}</span>
+
+    @GetMapping(&quot;/getSport/{name}&quot;)
+    public Optional&lt;Sports&gt; getSportsByID(@PathVariable String name){
+<span class="nc" id="L21">        return sportsRepository.findById(name);</span>
+    }
+
+    @GetMapping(&quot;/updateSport/{name}/{description}/{coach}&quot;)
+    public void updateSportsByID(@PathVariable String name,@PathVariable String description,@PathVariable String coach)
+    {
+<span class="nc" id="L27">        Optional&lt;Sports&gt; sport = sportsRepository.findById(name);</span>
+<span class="nc bnc" id="L28" title="All 2 branches missed.">        if (sport.isPresent())</span>
+        {
+<span class="nc" id="L30">            sport.get().setDescription(description);</span>
+<span class="nc" id="L31">            sport.get().setCoach(coach);</span>
+<span class="nc" id="L32">            sportsRepository.save(sport.get());</span>
+        }
+<span class="nc" id="L34">    }</span>
+
+    @PostMapping(&quot;/add&quot;)
+<span class="nc" id="L37">    public Sports saveSport(@RequestBody Sports sport){ return sportsRepository.save(sport); }</span>
+
+    @DeleteMapping(&quot;deleteSport/{id}&quot;)
+    public String deleteSport(@PathVariable String id) {
+<span class="nc" id="L41">        sportsRepository.deleteById(id);</span>
+<span class="nc" id="L42">        return &quot;Sport: &quot; + id + &quot;deleted&quot;;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

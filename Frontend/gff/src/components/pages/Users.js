@@ -57,31 +57,30 @@ class Users extends React.Component {
     const {user, isAuthenticated, LogIn, LogOut} = this.context;
     return (
         <div className='users'>
-            <h1 align="center"><u>System Users:</u></h1>
+            <h1 align="center"><u>System Users</u></h1>
             <br/>
             <div className='users-container' align="center">
-                <h2 align="center">Coaches:</h2>
-                <br/>
+                <h2 align="center">Coaches</h2>
                 <table border="1">
                     <tr>
-                        <th>Name:</th>
-                        <th>User Name:  </th>
-                        <th>Email:</th>
-                        <th>License Number:</th>
-                        <th>Work Place ID:</th>
-                        <th>Options</th>
+                        <th className='header1'>&thinsp; Name &thinsp;</th>
+                        <th className='header1'>&thinsp; User Name &thinsp;</th>
+                        <th className='header1'>&thinsp; Email &thinsp;</th>
+                        <th className='header1'>&thinsp; License Number &thinsp;</th>
+                        <th className='header1'>&thinsp; Work Place ID &thinsp;</th>
+                        <th className='header1'>&thinsp; Options &thinsp;</th>
 
                     </tr>
                     {this.state.Coach.map(coach => (
                     <>
                     <tr>
                     
-                    <th>{coach['firstName']} {coach['lastName']}</th>
-                    <th>{coach['userName']}</th>
-                    <th>{coach['email']}</th>
-                    <th>{coach['licenseNumber']}</th>
-                    <th>{coach['workPlaceId']}</th>
-                    <th><button onClick={() => this.deleteCoach(coach['userName']) && this.refreshPage()}>Delete</button></th>
+                    <th>&thinsp;{coach['firstName']} {coach['lastName']}&thinsp;</th>
+                    <th>&thinsp;{coach['userName']}&thinsp;</th>
+                    <th>&thinsp;{coach['email']}&thinsp;</th>
+                    <th>&thinsp;{coach['licenseNumber']}&thinsp;</th>
+                    <th>&thinsp;{coach['workPlaceId']}&thinsp;</th>
+                    <th>&thinsp;<button className='deleteButton' onClick={() => this.deleteCoach(coach['userName']) && this.refreshPage()}>Delete</button>&thinsp;</th>
                     </tr>
                     </> ))}
 
@@ -90,22 +89,22 @@ class Users extends React.Component {
                 </table>
                 
                 <br/><br/>
-                <h2 align="center">Sportsman:</h2>
+                <h2 align="center">Sportsmans</h2>
                 <table border="1">
                     <tr>
-                        <th>Name:</th>
-                        <th>User Name:  </th>
-                        <th>Email:</th>
-                        <th>Options</th>
+                        <th className='header1'>&thinsp; Name &thinsp;</th>
+                        <th className='header1'>&thinsp; User Name &thinsp;</th>
+                        <th className='header1'>&thinsp; Email &thinsp;</th>
+                        <th className='header1'>&thinsp; Options &thinsp;</th>
                     </tr>
                     {this.state.Sportsman.map(sportsman => (
                     <>
                     <tr>
                     
-                    <th>{sportsman['firstName']} {sportsman['lastName']}</th>
-                    <th>{sportsman['userName']}</th>
-                    <th>{sportsman['email']}</th>
-                    <th><button onClick={() => this.deleteSportsman(sportsman['userName']) && this.refreshPage()}>Delete</button></th>
+                    <th>&thinsp;{sportsman['firstName']} {sportsman['lastName']}&thinsp;</th>
+                    <th>&thinsp;{sportsman['userName']}&thinsp;</th>
+                    <th>&thinsp;{sportsman['email']}&thinsp;</th>
+                    <th>&thinsp;<button className='deleteButton' onClick={() => this.deleteSportsman(sportsman['userName']) && this.refreshPage()}>Delete</button>&thinsp;</th>
 
                     </tr>
                     </> ))}
@@ -117,8 +116,8 @@ class Users extends React.Component {
                 <br/>
                 <br/>
 
-                <Link to="../addCoach" >Add New Coach</Link>&emsp;&emsp;
-                <Link to="../addSportsman" >Add New Sportsman</Link>&emsp;&emsp;               
+                <Link className='addCoach' to="../addCoach" >&thinsp;Add New Coach&thinsp;</Link>&emsp;&emsp;
+                <Link className='addSportsman' to="../addSportsman" >&thinsp;Add New Sportsman&thinsp;</Link>&emsp;&emsp;               
             </div>
         </div>
     )

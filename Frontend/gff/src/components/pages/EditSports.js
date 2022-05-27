@@ -40,23 +40,23 @@ class EditSports extends React.Component {
     const {user, isAuthenticated, LogIn, LogOut} = this.context;
     return (
         <div className='sports'>
-            <h1>System Sports:</h1>
+            <h1><u>System Sports</u></h1>
             <br/>
             <div className='sports-container' align="center">
                 <table border="1" >
                     <tr>
-                        <th><b>Name</b></th>
-                        <th><b>Description</b></th>
-                        <th><b>Coach</b></th>
-                        <th><b>Options</b></th>
+                        <th className='header1'>&thinsp;Name&thinsp;</th>
+                        <th className='header1'>&thinsp;Description&thinsp;</th>
+                        <th className='header1'>&thinsp;Coach&thinsp;</th>
+                        <th className='header1'>&thinsp;Options&thinsp;</th>
                     </tr>
                         {this.state.Sports.map(sport => (
                         <>
                         <tr>
-                        <th>{sport['name']}</th>
-                        <th>{sport['description']}</th>
-                        <th>{sport['coach']}</th>
-                        <th><button onClick={() => this.deleteSport(sport['name']) && this.refreshPage()}>Delete</button></th>
+                        <th>&thinsp;{sport['name']}&thinsp;</th>
+                        <th>&thinsp;{sport['description']}&thinsp;</th>
+                        <th>&thinsp;{sport['coach']}&thinsp;</th>
+                        <th><button className='deleteButton' onClick={() => this.deleteSport(sport['name']) && this.refreshPage()}>Delete</button></th>
                         </tr>
                         </> ))}
                 </table>
@@ -64,7 +64,7 @@ class EditSports extends React.Component {
                 <br/>
                 <br/>
 
-                <Link to="../addSport" >Add Sports</Link>&emsp;&emsp;<Link to="../updateSport" >Update Sports</Link>
+                <Link className='addSport' to="../addSport" >&thinsp;Add Sport&thinsp;</Link>&emsp;&emsp;<Link className='updateSport' to="../updateSport" >&thinsp;Update Sport&thinsp;</Link>
             </div>
 
         </div>

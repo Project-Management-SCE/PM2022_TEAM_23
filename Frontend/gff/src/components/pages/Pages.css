@@ -27,54 +27,63 @@
 }
 
 .about {
-  background-image: url('/public/Img1.jpeg');
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  display: flex;
-  height: 110vh;
-  align-items: center;
-  justify-content: center;
-  font-size: 2rem;
+  background-color: black;
+  height: 1500px;
 }
 
 .about-text {
-  background-color:black;
-  margin-bottom: -15px;
-  font-size: 2rem;
+  font-size: 2.5rem;
   font-weight: bold;
-  color: rgb(52, 129, 211);
+  color: white;
   text-align: right;
-  border-radius: 30px;
+  margin-right: 60px;
+  font-style:oblique;
+}
+
+.tomer{
+  margin-top: 5%;
+  margin-right: 5%;
+}
+
+.eli{
+  margin-top: 5%;
+  margin-right: 5%;
+}
+.matan{
+  margin-top: 5%;
+  margin-right: 5%;
+}
+.yuval{
+  margin-top: 5%;
+  margin-right: 5%;
 }
 
 .about-text h1{
+  text-align: center;
   text-decoration: underline;
-}
+  font-style:oblique;}
 
 .coaches {
-  background-image: url('/public/Img1.jpeg');
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  display: flex;
-  height: 110vh;
+  height: 1500px;
+  background-color: black;
   font-weight:900;
-  align-items:initial;
-  justify-content:initial;
-  font-size: 1.5rem;
+  font-size: 3rem;
+  font-style:oblique;
 }
 
-.coaches h1{
-  background-color: black;
-  color: rgb(52, 129, 211);
-}
-
-.coaches-container div{
-  margin-left: 70px;
+.coaches-container h1{
   color: white;
-  background-color: black;
-  border-radius: 200px;
+  text-align: center;
+  font-style:oblique;
+  font-size: 4rem;
+}
+
+.coaches-container{
+  margin-left: 50px;
+  text-align:initial;
+  color: white;
+  font-size: 1.7rem;
+  font-style:oblique;
 }
 
 .sportsmans {
@@ -144,7 +153,6 @@
   font-size: 4rem;
 }
 
-
 .coach-private-details1{
   display: flex;
   margin-top: 20px;
@@ -200,42 +208,181 @@
   margin-left: 44%;
 }
 
-.messages-container{
-  display: flex;
+.sports{
+  height: 1000px;
+  color: white;
+  background-color: black;
+  font-size: 1.7rem;
+  text-align: center;
 }
 
-.newMessage{
-  margin-top: 5%;
-  margin-left: 15%;
+.sports-container{
+  color: white;
+  text-align: center;
+  font-style:oblique;
 }
 
-.messages-container1{
-  margin-top: 5%;
-  margin-left: 20%;
+.deleteButton{
+  text-align: center;
+  background-color: red;
+  color: black;
+  font-size: x-large;
+  font-weight: 600;
+  height: 40px;
+  width: 90px;
 }
 
-.messages-container2{
-  margin-top: 5%;
-  margin-left: 10%;
+.addSport{
+  color: blue;
+  background-color: greenyellow;
+  border-radius: 8%;
+  height: 50px;
+  width: 250px;
+  align-items: center;
+  text-decoration: none;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.updateSport{
+  color: greenyellow;
+  background-color: blue;
+  border-radius: 8%;
+  height: 50px;
+  width: 250px;
+  align-items: center;
+  text-decoration: none;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.users{
+  height: 1300px;
+  color: white;
+  background-color: black;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.users-container{
+  color: white;
+  align-items: center;
+  font-style:oblique;
+}
+
+.header1{
+  color: white;
+  background-color: rgb(52, 129, 211);
+}
+
+.addCoach{
+  color: blue;
+  background-color: greenyellow;
+  border-radius: 8%;
+  height: 50px;
+  width: 250px;
+  align-items: center;
+  text-decoration: none;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.addSportsman{
+  color: blue;
+  background-color: greenyellow;
+  border-radius: 8%;
+  height: 50px;
+  width: 250px;
+  align-items: center;
+  text-decoration: none;
+  font-size: 2rem;
+  font-weight: 600;
 }
 
 .forum-container{
   display: flex;
+  height: 1300px;
+  color: white;
+  background-color: black;
+  font-size: 2rem;
+  text-align: center;
 }
 
 .newpost{
-  margin-top: 5%;
-  margin-left: 15%;
+  display: flex;
+  color: white;
+  text-align: center;
+  font-style:oblique;
 }
 
 .forum-container1{
-  margin-top: 5%;
   margin-left: 25%;
+  color: white;
+  text-align: center;
+  font-style:oblique;
 }
 
 .forum-container2{
+  margin-left: 38%;
+  color: white;
+  text-align: center;
+  font-style:oblique;
+}
+
+.postButton{
   margin-top: 5%;
-  margin-left: 43%;
+  margin-left: 10%;
+  color: greenyellow;
+  background-color: blue;
+  border-radius: 8%;
+  height: 50px;
+  width: 250px;
+  align-items: center;
+  text-decoration: none;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.messages-container{
+  display: flex;
+  height: 1300px;
+  color: white;
+  background-color: black;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.newMessage{
+  display: flex;
+  margin-top: 2.5%;
+  margin-left: 6%;
+  color: white;
+  text-align: center;
+  font-style:oblique;
+}
+
+.messages-container1{
+  margin-left: 25%;
+  color: white;
+  text-align: center;
+  font-style:oblique;
+}
+
+.messages-container2{
+  margin-left: 20%;
+  color: white;
+  text-align: center;
+  font-style:oblique;
+}
+
+.emptyButton{
+  text-align: center;
+  background-color: red;
+  color: black;
+  font-size: x-large;
+  font-weight: 600;
+  height: 40px;
+  width: 160px;
 }
 
 .upgrade{
@@ -267,4 +414,18 @@
     text-decoration: none;
     font-size: 2rem;
     margin-left: 10px;
+}
+
+.best-sportsmans {
+  height: 1000px;
+  color: white;
+  background-color: black;
+  font-weight:900;
+  font-size: 1.5rem;
+}
+
+.best-sportsmans-container{
+  color: white;
+  text-align: center;
+  font-style:oblique;
 }

@@ -29,20 +29,22 @@ class OurCoaches extends React.Component {
     return (
         <div className='coaches'>
             <div className='coaches-container'>
-                <h1>GoForFit Coaches:</h1>
+                <h1><u>GoForFit - Coaches</u></h1>
                 <br/>
                 {this.state.Coach.map(coach => (
                     <>
-                    <div>Name: {coach['firstName']} {coach['lastName']}</div>
-                    <div>User Name: {coach['userName']}</div>
-                    <div>Email: {coach['email']}</div>
-                    <div>Born In: {coach['dayOfBirth']}/{coach['monthOfBirth']}/{coach['yearOfBirth']}</div>
-                    <div>Height: {coach['height']}</div>
-                    <div>Weight: {coach['weight']}</div>
-                    <div>Phone Number: {coach['phoneNumber']}</div>
-                    <div>Profession: {coach['sportKind']} Coach</div>
-                    <div>License Number: {coach['licenseNumber']}</div>
-                    <div>Work Place ID: {coach['workPlaceId']}</div>
+                    <div><u>Name:</u> {coach['firstName']} {coach['lastName']}&emsp;
+                    <u>User Name:</u> {coach['userName']}&emsp;
+                    <u>Email:</u> {coach['email']}&emsp;
+                    <u>Born In:</u> {coach['dayOfBirth']}/{coach['monthOfBirth']}/{coach['yearOfBirth']}&emsp;
+                    <u>Height:</u> {coach['height']}&emsp;
+                    <u>Weight:</u> {coach['weight']}&emsp;
+                    <br/>
+                    <u>Phone Number:</u> {coach['phoneNumber']}&emsp;
+                    <u>Profession:</u> {coach['sportKind']} Coach&emsp;
+                    <u>License Number:</u> {coach['licenseNumber']}&emsp;
+                    <u>Work Place ID:</u> {coach['workPlaceId']}&emsp;
+                    <u>Rating:</u> {coach['rating']} Stars</div>
                     <br/>
                     <br/>
                     </>

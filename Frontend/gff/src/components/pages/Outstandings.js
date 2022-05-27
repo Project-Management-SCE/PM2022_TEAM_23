@@ -40,7 +40,7 @@ class Outstandings extends React.Component {
         <>
         <div className='best-sportsmans' align="center">
             <br/>
-            <h1>Best Sportsmans:</h1>
+            <h1><u>Best Sportsmans</u></h1>
             <br/>
             <div className='best-sportsmans-container' align="center">
                 {this.state.sportsmans.sort((a,b) => {
@@ -63,10 +63,9 @@ class Outstandings extends React.Component {
             <br/>
             <br/>
             <br/>
-        </div>
-        <div className='best-sportsmans' align="center">
+        <div className='best-coaches' align="center">
         <br/>
-        <h1>Best Coaches:</h1>
+        <h1><u>Best Coaches</u></h1>
         <br/>
         <div className='best-coaches-container' align="center">
             {this.state.coaches.sort((a,b) => {
@@ -84,6 +83,7 @@ class Outstandings extends React.Component {
                 )
             )}
         </div>
+    </div>
     </div>
     </>
         )

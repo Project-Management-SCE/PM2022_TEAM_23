@@ -71,11 +71,11 @@ class Messages extends React.Component {
     return (
         <div className='messages-container' align="center">
         <div className='newMessage'>
-            <Link to='/newMessage'>Send Message</Link>
+            <Link className='postButton' to='/newMessage'>Send Message</Link>
         </div>
         <div className='messages-container1' align="center">
                 <br/>
-                <h1>Inbox</h1>
+                <h1><u>Inbox</u></h1>
                 <br/>
                 {this.state.messages_toMe.map(message => (
                 <>
@@ -86,11 +86,11 @@ class Messages extends React.Component {
                     <br />
                     <br/>
                 </>))}
-                <button onClick={() => this.deleteMessage()}>Empty</button>
+                <button className='emptyButton' onClick={() => this.deleteMessage()}>&thinsp;Empty Inbox&thinsp;</button>
                 </div>
                 <div className='messages-container2' align="center">
                 <br/>
-                <h1>Sent</h1>
+                <h1><u>Sent</u></h1>
                 <br/>
                 {this.state.messages_fromMe.map(message => (
                 !message.to.includes("Forum")  && <>

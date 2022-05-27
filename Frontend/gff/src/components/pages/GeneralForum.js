@@ -35,13 +35,13 @@ class GeneralForum extends React.Component {
     render() {
     const {user, isAuthenticated, LogIn, LogOut} = this.context;
     return (
-        <div className='forum-container' align="center">
+        <div className='forum-container'>
         {user.type === "Admin" && 
         <>
         <div className='newpost'>
-            <Link to='/newPost'>Post something...</Link>
+            <Link className='postButton' to='/newPost'>&thinsp;New Post&thinsp;</Link>
         </div> 
-        <div className='forum-container1' align="center">
+        <div className='forum-container1'>
                 <br/>
                 <h1>General Forum</h1>
                 <br/>
@@ -57,7 +57,7 @@ class GeneralForum extends React.Component {
                 </div>
                 </>}
         {user.type !== "Admin" && 
-        <div className='forum-container2' align="center">
+        <div className='forum-container2'>
                 <br/>
                 <h1>General Forum</h1>
                 <br/>
