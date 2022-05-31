@@ -8,7 +8,8 @@ import java.util.List;
 @RequestMapping("messages/")
 @CrossOrigin
 public class MessagesController {
-    @Autowired
+
+    @Autowired(required=false)
     private MessagesRepository messagesRepository;
 
     @GetMapping("/getSender/{userName}")

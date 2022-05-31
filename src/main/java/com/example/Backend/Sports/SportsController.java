@@ -10,7 +10,8 @@ import java.util.Optional;
 @RequestMapping("sports/")
 @CrossOrigin
 public class SportsController {
-    @Autowired
+    
+    @Autowired(required=false)
     private SportsRepository sportsRepository;
 
     @GetMapping("/getSports")

@@ -13,7 +13,8 @@ import java.util.Optional;
 @RequestMapping("sportsman/")
 @CrossOrigin
 public class SportsmanController {
-    @Autowired
+
+    @Autowired(required=false)
     private SportsmanRepository sportsmanRepository;
 
     @GetMapping("/getSportsman")

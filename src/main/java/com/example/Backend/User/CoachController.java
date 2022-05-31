@@ -15,7 +15,8 @@ import java.util.Optional;
 @RequestMapping("coach/")
 @CrossOrigin
 public class CoachController {
-    @Autowired
+
+    @Autowired(required=false)
     private CoachRepository coachRepository;
 
     @GetMapping("/getCoach")

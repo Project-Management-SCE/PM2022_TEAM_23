@@ -112,17 +112,17 @@ class CoachProfile extends React.Component {
                     <tr>
                         <th>Beginner Weekly Session</th>
                         <th><ReactPlayer height='600px' width='900px' controls url={user.beginnerWeeklySession[0]}/></th>
-                        <th><p><b>Description: </b>{user.beginnerWeeklySession[1]}</p></th>
+                        <th>&emsp;<p><b>Description: </b>{user.beginnerWeeklySession[1]}</p>&emsp;</th>
                     </tr>
                     <tr>
                         <th>Semi-Pro Weekly Session</th>
                         <th><ReactPlayer height='600px' width='900px' controls url={user.semiproWeeklySession[0]}/></th>
-                        <th><p><b>Description: </b>{user.semiproWeeklySession[1]}</p></th>
+                        <th>&emsp;<p><b>Description: </b>{user.semiproWeeklySession[1]}</p>&emsp;</th>
                     </tr>
                     <tr>
                         <th>Professional Weekly Session</th>
                         <th><ReactPlayer height='600px' width='900px' controls url={user.professionalWeeklySession[0]}/></th>
-                        <th><p><b>Description: </b>{user.professionalWeeklySession[1]}</p></th>
+                        <th>&emsp;<p><b>Description: </b>{user.professionalWeeklySession[1]}</p>&emsp;</th>
                     </tr>
                 </table>
                 </div>
@@ -187,7 +187,7 @@ class CoachProfile extends React.Component {
                     <tr>
                         <th>Hello {user.firstName}&thinsp;{user.lastName},&thinsp;Here Is Your Weekly Session! Please Click <button className='doneButton' onClick={() => this.SaveWorkout(coach['beginnerWeeklySession'][0])}>Here</button> When You're Done</th>
                         <th><ReactPlayer height='600px' width='900px' controls url={coach['beginnerWeeklySession'][0]}/></th>
-                        <th><p><u>Description:</u>&thinsp;{coach['beginnerWeeklySession'][1]}</p></th>
+                        <th>&emsp;<p><u>Description:</u>{coach['beginnerWeeklySession'][1]}</p>&emsp;</th>
                     </tr>
                     </>}
                     {user.level === "Semi-Pro" && 
@@ -195,7 +195,7 @@ class CoachProfile extends React.Component {
                     <tr>
                         <th>Hello {user.firstName}&thinsp;{user.lastName},&thinsp;Here Is Your Weekly Session! Please Click <button className='doneButton' onClick={() => this.SaveWorkout(coach['semiproWeeklySession'][0])}>Here</button> When You're Done</th>
                         <th><ReactPlayer height='600px' width='900px' controls url={coach['semiproWeeklySession'][0]}/></th>
-                        <th><p><u>Description:</u>&thinsp;{coach['semiproWeeklySession'][1]}</p></th>
+                        <th>&emsp;<p><u>Description:</u>{coach['semiproWeeklySession'][1]}</p>&emsp;</th>
                     </tr>
                     </>}
                     {user.level === "Professional" && 
@@ -203,7 +203,7 @@ class CoachProfile extends React.Component {
                     <tr>
                         <th>Hello {user.firstName}&thinsp;{user.lastName},&thinsp;Here Is Your Weekly Session! Please Click <button className='doneButton' onClick={() => this.SaveWorkout(coach['professionalWeeklySession'][0])}>Here</button> When You're Done</th>
                         <th><ReactPlayer height='600px' width='900px' controls url={coach['professionalWeeklySession'][0]}/></th>
-                        <th><p><u>Description:</u>&thinsp;{coach['professionalWeeklySession'][1]}</p></th>
+                        <th>&emsp;<p><u>Description:</u>{coach['professionalWeeklySession'][1]}</p>&emsp;</th>
                     </tr>
                     </>}
                 </table>

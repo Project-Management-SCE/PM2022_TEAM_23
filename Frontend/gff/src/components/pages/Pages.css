@@ -142,42 +142,6 @@
   font-size: 2rem;
 }
 
-.coach-private{
-  margin-top: 50px;
-  margin-left: 50px;
-  display: inline;
-  border: 20px;
-}
-
-.coach-private h1{
-  font-size: 4rem;
-}
-
-.coach-private-details1{
-  display: flex;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  margin-left: 30%;
-  font-size: 1.5rem;
-}
-
-.coach-private-details2{
-  display: flex;
-  margin-left: 28%;
-  font-size: 1.5rem;
-}
-
-.coach-private-videos th{
-  height: 600px;
-  width: 600px;
-  font-size: 1.5rem;
-}
-
-.coach-private-videos{
-  margin-top: 30px;
-  margin-bottom: 50px;
-}
-
 .uploadlink{
   background-color: black;
   border-radius: 10px;
@@ -362,14 +326,16 @@
 }
 
 .messages-container1{
-  margin-left: 25%;
+  margin-left: 10%;
+  width: 500px;
   color: white;
   text-align: center;
   font-style:oblique;
 }
 
 .messages-container2{
-  margin-left: 20%;
+  margin-left: 3%;
+  width: 500px;
   color: white;
   text-align: center;
   font-style:oblique;
@@ -383,6 +349,81 @@
   font-weight: 600;
   height: 40px;
   width: 160px;
+}
+
+.injuries{
+  height: 1300px;
+  color: white;
+  background-color: black;
+  font-size: 2rem;
+  text-align: center;
+}
+
+/* .injuries-container{
+  color: white;
+  text-align: center;
+  font-style:oblique;
+} */
+
+.ci-table th{
+  /* background-color: rgb(52, 129, 211); */
+}
+
+.adInjury{
+  color: greenyellow;
+  background-color: blue;
+  border-radius: 8%;
+  height: 50px;
+  width: 250px;
+  align-items: center;
+  text-decoration: none;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.coach-private{
+  height: 1500px;
+  color: white;
+  background-color: black;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.coach-private-container{
+  color: white;
+  background-color: black;
+  text-align: center;
+  font-style:oblique;
+}
+
+.coach-private h1{
+  font-size: 4rem;
+  color: white;
+}
+
+.coach-private-details1{
+  display: flex;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 18%;
+  font-size: 1.5rem;
+}
+
+.coach-private-details2{
+  display: flex;
+  margin-left: 18%;
+  font-size: 1.5rem;
+}
+
+.coach-private-videos th{
+  height: 600px;
+  width: 600px;
+  font-size: 1.5rem;
+}
+
+.coach-private-videos{
+  margin-top: 30px;
+  margin-bottom: 50px;
 }
 
 .upgrade{
