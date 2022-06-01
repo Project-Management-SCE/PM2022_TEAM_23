@@ -1,3 +1,3 @@
-com/example/Backend/SportsTest.class
-com/example/Backend/UserTest.class
-com/example/Backend/BackendApplicationTests.class
+com/example/Backend/Unit/SportsTest.class
+com/example/Backend/Unit/BackendApplicationTests.class
+com/example/Backend/Unit/UserTest.class

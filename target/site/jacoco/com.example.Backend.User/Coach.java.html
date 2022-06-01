@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="iw"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Coach.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Backend</a> &gt; <a href="index.source.html" class="el_package">com.example.Backend.User</a> &gt; <span class="el_source">Coach.java</span></div><h1>Coach.java</h1><pre class="source lang-java linenums">package com.example.Backend.User;
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="he"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Coach.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Backend</a> &gt; <a href="index.source.html" class="el_package">com.example.Backend.User</a> &gt; <span class="el_source">Coach.java</span></div><h1>Coach.java</h1><pre class="source lang-java linenums">package com.example.Backend.User;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.web.client.RestTemplate;
 
@@ -65,11 +65,11 @@ public class Coach extends User{
 
     public boolean check_licenseNumber_API()
     {
-<span class="nc" id="L68">        String url = &quot;https://practitionersapi.health.gov.il/Practitioners/api/Practitioners/GetLicenses?licenseNum=&amp;maxResults=1000&amp;professionId=10&amp;practitionerName=&amp;certificate=&quot;;</span>
-<span class="nc" id="L69">        RestTemplate restTemplate = new RestTemplate();</span>
-<span class="nc" id="L70">        String Licenses = restTemplate.getForObject(url,String.class);</span>
-<span class="nc bnc" id="L71" title="All 2 branches missed.">        if(Licenses.contains(this.getLicenseNumber()))</span>
-<span class="nc" id="L72">            return true;</span>
+<span class="fc" id="L68">        String url = &quot;https://practitionersapi.health.gov.il/Practitioners/api/Practitioners/GetLicenses?licenseNum=&amp;maxResults=1000&amp;professionId=10&amp;practitionerName=&amp;certificate=&quot;;</span>
+<span class="fc" id="L69">        RestTemplate restTemplate = new RestTemplate();</span>
+<span class="fc" id="L70">        String Licenses = restTemplate.getForObject(url,String.class);</span>
+<span class="pc bpc" id="L71" title="1 of 2 branches missed.">        if(Licenses.contains(this.getLicenseNumber()))</span>
+<span class="fc" id="L72">            return true;</span>
         else
 <span class="nc" id="L74">            return false;</span>
     }
@@ -84,11 +84,11 @@ public class Coach extends User{
 
     public boolean check_workPlaceId_API()
     {
-<span class="nc" id="L87">        String url = &quot;https://data.gov.il/api/3/action/datastore_search?resource_id=2304b5de-c720-4b5c-bbc7-4cbab85e0ae8&quot;;</span>
-<span class="nc" id="L88">        RestTemplate restTemplate = new RestTemplate();</span>
-<span class="nc" id="L89">        String Facilities = restTemplate.getForObject(url,String.class);</span>
-<span class="nc bnc" id="L90" title="All 2 branches missed.">        if(Facilities.contains(this.getWorkPlaceId()))</span>
-<span class="nc" id="L91">            return true;</span>
+<span class="fc" id="L87">        String url = &quot;https://data.gov.il/api/3/action/datastore_search?resource_id=2304b5de-c720-4b5c-bbc7-4cbab85e0ae8&quot;;</span>
+<span class="fc" id="L88">        RestTemplate restTemplate = new RestTemplate();</span>
+<span class="fc" id="L89">        String Facilities = restTemplate.getForObject(url,String.class);</span>
+<span class="pc bpc" id="L90" title="1 of 2 branches missed.">        if(Facilities.contains(this.getWorkPlaceId()))</span>
+<span class="fc" id="L91">            return true;</span>
         else
 <span class="nc" id="L93">            return false;</span>
     }
@@ -106,43 +106,43 @@ public class Coach extends User{
 <span class="nc" id="L106">    }</span>
 
     public String[][] getCommonInjuries() {
-<span class="nc" id="L109">        return commonInjuries;</span>
+<span class="fc" id="L109">        return commonInjuries;</span>
     }
 
     public void setCommonInjury(String name,String causedBy,String treatment,int row) {
-<span class="nc bnc" id="L113" title="All 4 branches missed.">        if(row &gt; 0 &amp;&amp; row &lt; 4) {</span>
-<span class="nc" id="L114">            this.commonInjuries[row][0] = name;</span>
-<span class="nc" id="L115">            this.commonInjuries[row][1] = causedBy;</span>
-<span class="nc" id="L116">            this.commonInjuries[row][2] = treatment;</span>
+<span class="pc bpc" id="L113" title="2 of 4 branches missed.">        if(row &gt; 0 &amp;&amp; row &lt; 4) {</span>
+<span class="fc" id="L114">            this.commonInjuries[row][0] = name;</span>
+<span class="fc" id="L115">            this.commonInjuries[row][1] = causedBy;</span>
+<span class="fc" id="L116">            this.commonInjuries[row][2] = treatment;</span>
         }
-<span class="nc" id="L118">    }</span>
+<span class="fc" id="L118">    }</span>
 
     public String[] getBeginnerWeeklySession() {
-<span class="nc" id="L121">        return beginnerWeeklySession;</span>
+<span class="fc" id="L121">        return beginnerWeeklySession;</span>
     }
 
     public void setBeginnerWeeklySession(String url,String description) {
-<span class="nc" id="L125">        this.beginnerWeeklySession[0] = url;</span>
-<span class="nc" id="L126">        this.beginnerWeeklySession[1] = description;</span>
-<span class="nc" id="L127">    }</span>
+<span class="fc" id="L125">        this.beginnerWeeklySession[0] = url;</span>
+<span class="fc" id="L126">        this.beginnerWeeklySession[1] = description;</span>
+<span class="fc" id="L127">    }</span>
 
     public String[] getSemiproWeeklySession() {
-<span class="nc" id="L130">        return semiproWeeklySession;</span>
+<span class="fc" id="L130">        return semiproWeeklySession;</span>
     }
 
     public void setSemiproWeeklySession(String url,String description) {
-<span class="nc" id="L134">        this.semiproWeeklySession[0] = url;</span>
-<span class="nc" id="L135">        this.semiproWeeklySession[1] = description;</span>
-<span class="nc" id="L136">    }</span>
+<span class="fc" id="L134">        this.semiproWeeklySession[0] = url;</span>
+<span class="fc" id="L135">        this.semiproWeeklySession[1] = description;</span>
+<span class="fc" id="L136">    }</span>
 
     public String[] getProfessionalWeeklySession() {
-<span class="nc" id="L139">        return professionalWeeklySession;</span>
+<span class="fc" id="L139">        return professionalWeeklySession;</span>
     }
 
     public void setProfessionalWeeklySession(String url,String description) {
-<span class="nc" id="L143">        this.professionalWeeklySession[0] = url;</span>
-<span class="nc" id="L144">        this.professionalWeeklySession[1] = description;</span>
-<span class="nc" id="L145">    }</span>
+<span class="fc" id="L143">        this.professionalWeeklySession[0] = url;</span>
+<span class="fc" id="L144">        this.professionalWeeklySession[1] = description;</span>
+<span class="fc" id="L145">    }</span>
 
     public String getWeeklyMotivation() {
 <span class="fc" id="L148">        return weeklyMotivation;</span>
@@ -153,18 +153,18 @@ public class Coach extends User{
 <span class="fc" id="L153">    }</span>
 
     public int getRating() {
-<span class="nc" id="L156">        return this.rating;</span>
+<span class="fc" id="L156">        return this.rating;</span>
     }
 
     public void setRating(int rating) {
-<span class="nc" id="L160">        this.ratings.add(rating);</span>
-<span class="nc" id="L161">        int sum = 0;</span>
-<span class="nc bnc" id="L162" title="All 2 branches missed.">        for (int i = 0;i&lt;ratings.size();i++)</span>
+<span class="fc" id="L160">        this.ratings.add(rating);</span>
+<span class="fc" id="L161">        int sum = 0;</span>
+<span class="fc bfc" id="L162" title="All 2 branches covered.">        for (int i = 0;i&lt;ratings.size();i++)</span>
         {
-<span class="nc" id="L164">            sum += ratings.get(i);</span>
+<span class="fc" id="L164">            sum += ratings.get(i);</span>
         }
-<span class="nc" id="L166">        this.rating = sum/ratings.size();</span>
-<span class="nc" id="L167">    }</span>
+<span class="fc" id="L166">        this.rating = sum/ratings.size();</span>
+<span class="fc" id="L167">    }</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

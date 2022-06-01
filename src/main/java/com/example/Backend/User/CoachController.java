@@ -9,6 +9,7 @@ import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @RestController
@@ -27,12 +28,12 @@ public class CoachController {
         Optional<Coach> coach = coachRepository.findById(userName);
         if (coach.isPresent())
         {
-            if (coach.get().getPassword() == password)
+            if (Objects.equals(coach.get().getPassword(), password))
             {
                 return coach;
             }
         }
-        return coach;
+        return Optional.empty();
     }
 
     @GetMapping("/addCommonInjury/{userName}/{name}/{causedBy}/{treatment}/{row}")
@@ -113,8 +114,10 @@ public class CoachController {
     @PostMapping("/sign_up")
     public Coach saveCoach(@RequestBody Coach coach)
     {
-        if(coach.check_licenseNumber_API()) //&& coach.check_workPlaceId_API())
-            return coachRepository.save(coach);
+        if(coach.check_licenseNumber_API() && coach.check_workPlaceId_API()) {
+            coachRepository.save(coach);
+            return coach;
+        }
         else
             return null;
     }
@@ -122,7 +125,7 @@ public class CoachController {
     @DeleteMapping("deleteCoach/{userName}")
     public String deleteCoach(@PathVariable String userName){
         coachRepository.deleteById(userName);
-        return "Coach " + userName + "deleted";
+        return "Coach " + userName + " deleted";
     }
 }
 

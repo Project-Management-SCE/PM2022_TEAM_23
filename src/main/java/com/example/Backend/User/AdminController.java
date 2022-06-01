@@ -6,6 +6,7 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @RestController
@@ -25,12 +26,12 @@ public class AdminController {
         Optional<Admin> admin = adminRepository.findById(userName);
         if (admin.isPresent())
         {
-            if (admin.get().getPassword() == password)
+            if (Objects.equals(admin.get().getPassword(), password))
             {
                 return admin;
             }
         }
-        return admin;
+        return Optional.empty();
     }
 
     @PostMapping("/")
@@ -41,6 +42,6 @@ public class AdminController {
     @DeleteMapping("/{userName}")
     public String deleteAdmin(@PathVariable String userName){
         adminRepository.deleteById(userName);
-        return "User " + userName + "deleted";
+        return "User " + userName + " deleted";
     }
 }

@@ -20,8 +20,13 @@ public class MessagesController {
 
     @PostMapping("/saveMessage")
     public Messages saveMessage(@RequestBody Messages message) {
-        return messagesRepository.save(message); }
+        messagesRepository.save(message);
+        return message;
+    }
 
     @DeleteMapping("/deleteMessage/{userName}")
-    public void deleteMessage(@PathVariable String userName) { messagesRepository.deleteMessage(userName); }
+    public String deleteMessage(@PathVariable String userName) {
+        messagesRepository.deleteMessage(userName);
+        return "Messages to " + userName + " deleted";
+    }
 }

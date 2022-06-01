@@ -23,7 +23,7 @@ public class SportsController {
     }
 
     @GetMapping("/updateSport/{name}/{description}/{coach}")
-    public void updateSportsByID(@PathVariable String name,@PathVariable String description,@PathVariable String coach)
+    public Optional<Sports> updateSportsByID(@PathVariable String name,@PathVariable String description,@PathVariable String coach)
     {
         Optional<Sports> sport = sportsRepository.findById(name);
         if (sport.isPresent())
@@ -32,14 +32,18 @@ public class SportsController {
             sport.get().setCoach(coach);
             sportsRepository.save(sport.get());
         }
+        return sport;
     }
 
     @PostMapping("/add")
-    public Sports saveSport(@RequestBody Sports sport){ return sportsRepository.save(sport); }
+    public Sports saveSport(@RequestBody Sports sport){
+        sportsRepository.save(sport);
+        return sport;
+    }
 
-    @DeleteMapping("deleteSport/{id}")
-    public String deleteSport(@PathVariable String id) {
-        sportsRepository.deleteById(id);
-        return "Sport: " + id + "deleted";
+    @DeleteMapping("deleteSport/{name}")
+    public String deleteSport(@PathVariable String name) {
+        sportsRepository.deleteById(name);
+        return "Sport: " + name + " deleted";
     }
 }

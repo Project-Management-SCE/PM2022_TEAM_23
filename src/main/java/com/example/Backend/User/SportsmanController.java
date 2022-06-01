@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @RestController
@@ -25,12 +26,12 @@ public class SportsmanController {
         Optional<Sportsman> sportsman = sportsmanRepository.findById(userName);
         if (sportsman.isPresent())
         {
-            if (sportsman.get().getPassword() == password)
+            if (Objects.equals(sportsman.get().getPassword(), password))
             {
                 return sportsman;
             }
         }
-        return sportsman;
+        return Optional.empty();
     }
 
     @GetMapping("/updateWeight/{userName}/{weight}")
@@ -92,11 +93,14 @@ public class SportsmanController {
     }
 
     @PostMapping("/sign_up")
-    public Sportsman saveSportsman(@RequestBody Sportsman sportsman){ return sportsmanRepository.save(sportsman); }
+    public Sportsman saveSportsman(@RequestBody Sportsman sportsman){
+        sportsmanRepository.save(sportsman);
+        return sportsman;
+    }
 
     @DeleteMapping("deleteSportsman/{userName}")
     public String deleteSportsman(@PathVariable String userName){
         sportsmanRepository.deleteById(userName);
-        return "Sportsman " + userName + "deleted";
+        return "Sportsman " + userName + " deleted";
     }
 }
