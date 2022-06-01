@@ -12,7 +12,7 @@ import java.util.Optional;
 @RequestMapping("admin/")
 @CrossOrigin
 public class AdminController {
-    @Autowired
+    @Autowired(required=false)
     private AdminRepository adminRepository;
 
     @GetMapping("/getAdmin")
